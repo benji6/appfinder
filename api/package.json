@@ -1,0 +1,15 @@
+{
+  "name": "appfinder-api",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "repository": "https://bitbucket.org/benji6/appfinder",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  },
+  "scripts": {
+    "start": ". ./env-vars.sh && node ."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "appfinder",
+  "version": "0.0.0",
+  "repository": "git@bitbucket.org:benji6/appfinder.git",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-recommended": "^2.0.1"
+  },
+  "dependencies": {}
+}
