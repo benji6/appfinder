@@ -1,0 +1,52 @@
+.app-card {
+  display: inline-block;
+  position: relative;
+  margin: var(--spacing-x4);
+  border-radius: var(--cmp-app-card-border-radius);
+  text-decoration: none;
+  box-shadow: 0 0 .5rem #000;
+  outline: 0;
+  transition-duration: .1s;
+  transition-property: box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.app-card::after {
+  border-radius: var(--cmp-app-card-border-radius);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: var(--cmp-app-card-border-width) solid var(--color-theme);
+}
+
+.app-card:focus,
+.app-card:hover {
+  box-shadow: 0 0 .75rem rgba(0, 0, 0, 0.5);
+  transform: scale(1.025);
+}
+
+.app-card:focus::after,
+.app-card:hover::after {
+  border-color: var(--color-highlight);
+}
+
+.app-card__logo-container {
+  padding: calc(2rem + var(--cmp-app-card-border-width)) 2rem 2rem;
+}
+
+.app-card__name {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-bottom-left-radius: var(--cmp-app-card-border-radius);
+  border-bottom-right-radius: var(--cmp-app-card-border-radius);
+  color: var(--color-white);
+  padding: .5rem 0 .667rem;
+  text-align: center;
+}
+
+.app-card:focus .app-card__name,
+.app-card:hover .app-card__name {
+  background-color: var(--color-highlight);
+}

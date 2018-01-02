@@ -1,0 +1,17 @@
+:root {
+  --cmp-app-card-border-radius: .5rem;
+  --cmp-app-card-border-width: .2rem;
+  --color-highlight: #ffae00;
+  --color-theme: #242424;
+  --color-white: #f6f6f6;
+  --content-max-width: 64rem;
+  --spacing-x1: .125rem;
+  --spacing-x4: calc(var(--spacing-x1) * 4);
+  --spacing-x8: calc(var(--spacing-x1) * 8);
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --spacing-x1: .25rem;
+  }
+}

@@ -1,0 +1,20 @@
+.header {
+  background-color: var(--color-theme);
+  box-shadow: 0 0 var(--spacing-x8) var(--color-theme);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-x8) 0;
+}
+
+@media (min-width: 64rem) {
+  .header {
+    border-radius: .333rem;
+    padding: var(--spacing-x8) 0;
+  }
+}
+
+.header__title {
+  color: var(--color-white);
+  margin: 0;
+  text-align: center;
+}
