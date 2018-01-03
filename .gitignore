@@ -1,3 +1,4 @@
 *.log
+db_setup
 env-vars.sh
 node_modules
