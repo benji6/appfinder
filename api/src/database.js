@@ -16,8 +16,8 @@ SELECT
   apps.url,
   GROUP_CONCAT(tags.id) AS tag_ids
 FROM apps
-JOIN app_tags ON apps.id = app_tags.app_id
-JOIN tags ON app_tags.tag_id = tags.id
+LEFT JOIN app_tags ON apps.id = app_tags.app_id
+LEFT JOIN tags ON app_tags.tag_id = tags.id
 GROUP BY id
 `
 
