@@ -1,6 +1,6 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {
-  APPS_REQUEST,
+  appsRequest,
   appsRequestFail,
   appsRequestSuccess,
 } from '../actions'
@@ -16,7 +16,7 @@ export function* fetchApps() {
 }
 
 function* watchAppsRequest() {
-  yield takeEvery(APPS_REQUEST, fetchApps)
+  yield takeEvery(appsRequest, fetchApps)
 }
 
 export default watchAppsRequest
