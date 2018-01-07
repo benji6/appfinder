@@ -22,7 +22,7 @@ GROUP BY id
 ORDER BY RAND()
 `
 
-const tagsQuery = 'SELECT * FROM tags'
+const tagsQuery = 'SELECT * FROM tags ORDER BY name'
 
 const runQuery = query => new Promise((resolve, reject) => {
   const connection = mysql.createConnection({
