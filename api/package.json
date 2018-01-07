@@ -10,6 +10,9 @@
     "mysql": "^2.15.0"
   },
   "scripts": {
-    "start": ". ./env-vars.sh && node ."
+    "start": ". ./env-vars.sh && nodemon"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.8"
   }
 }
