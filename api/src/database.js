@@ -19,6 +19,7 @@ FROM apps
 LEFT JOIN app_tags ON apps.id = app_tags.app_id
 LEFT JOIN tags ON app_tags.tag_id = tags.id
 GROUP BY id
+ORDER BY RAND()
 `
 
 const tagsQuery = 'SELECT * FROM tags'
