@@ -22,6 +22,22 @@ GROUP BY id
 ORDER BY RAND()
 `
 
+const appsQueryWithTagsFilter = `
+SELECT
+  apps.id,
+  apps.color,
+  apps.icon_url AS iconUrl,
+  apps.name,
+  apps.url,
+  GROUP_CONCAT(tags.id) AS tag_ids
+FROM apps
+LEFT JOIN app_tags ON apps.id = app_tags.app_id
+LEFT JOIN tags ON app_tags.tag_id = tags.id
+WHERE tags.name IN (?)
+GROUP BY id
+ORDER BY RAND()
+`
+
 const tagsQuery = 'SELECT * FROM tags ORDER BY name'
 
 const runQuery = query => new Promise((resolve, reject) => {
@@ -42,6 +58,8 @@ const runQuery = query => new Promise((resolve, reject) => {
   connection.end()
 })
 
-module.exports.getApps = () => runQuery(appsQuery)
+module.exports.getApps = tags => tags.length
+  ? runQuery(mysql.format(appsQueryWithTagsFilter, [tags]))
+  : runQuery(appsQuery)
 
 module.exports.getTags = () => runQuery(tagsQuery)

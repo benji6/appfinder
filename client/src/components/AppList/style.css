@@ -2,6 +2,6 @@
   box-sizing: border-box;
   margin: 0 auto;
   max-width: var(--content-max-width);
-  padding: var(--spacing-x4);
+  padding: 0 var(--spacing-x4) var(--spacing-x4);
   text-align: center;
 }

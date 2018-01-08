@@ -1,10 +1,10 @@
 import {fork, all} from 'redux-saga/effects'
-import watchAppsRequest from './watchAppsRequest'
-import watchTagsRequest from './watchTagsRequest'
+import apps from './apps'
+import tags from './tags'
 
 export default function* rootSaga() {
   yield all([
-    fork(watchAppsRequest),
-    fork(watchTagsRequest),
+    fork(apps),
+    fork(tags),
   ])
 }

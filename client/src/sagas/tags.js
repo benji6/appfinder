@@ -1,4 +1,8 @@
-import {call, put, takeEvery} from 'redux-saga/effects'
+import {
+  call,
+  put,
+  takeEvery,
+} from 'redux-saga/effects'
 import {
   tagsRequest,
   tagsRequestFail,
@@ -15,8 +19,6 @@ export function* fetchTags() {
   }
 }
 
-function* watchTagsRequest() {
+export default function* watchTagsRequest() {
   yield takeEvery(tagsRequest, fetchTags)
 }
-
-export default watchTagsRequest

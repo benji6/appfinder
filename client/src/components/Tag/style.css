@@ -1,0 +1,26 @@
+.tag {
+  --size: 1rem;
+  background-color: var(--color-theme);
+  border: none;
+  border-radius: var(--size);
+  color: var(--color-white);
+  cursor: pointer;
+  outline-color: var(--color-highlight);
+  margin-bottom: var(--size);
+  padding: var(--size);
+  transition: .1s background-color ease-in-out;
+}
+
+.tag:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.tag--selected {
+  background-color: var(--color-highlight);
+}
+
+@media (min-width: 64rem) {
+  .tag {
+    --size: 1.5rem;
+  }
+}
