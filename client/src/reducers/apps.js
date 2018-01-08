@@ -15,6 +15,6 @@ export default handleActions({
       ids.push(id)
       byId[id] = app
     }
-    return Object.assign({}, state, {byId, ids})
+    return {...state, byId, ids}
   },
 }, initialState)

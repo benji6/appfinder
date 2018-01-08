@@ -23,7 +23,7 @@ export default handleActions({
       ids.push(id)
       byId[id] = tag
     }
-    return Object.assign({}, state, {byId, ids})
+    return {...state, byId, ids}
   },
   [tagsToggleSelectedTag]: (state, {payload}) => {
     const s = new Set(state.selectedTagIds)
