@@ -1,4 +1,3 @@
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
@@ -8,17 +7,21 @@ import './style.css'
 class Tag extends React.PureComponent {
   render() {
     const {children, handleTagClick, id, selected} = this.props
-    const className = classnames('tag', {
-      'tag--selected': selected,
-    })
+
     return (
-      <button
-        aria-label={`Filter by "${children}" tag`}
-        className={className}
-        onClick={() => handleTagClick(id)}
-      >
-        {children}
-      </button>
+      <label className="tag" htmlFor={id}>
+        <input
+          aria-label={`Filter by "${children}" tag`}
+          checked={selected}
+          className="tag__input"
+          id={id}
+          onChange={() => handleTagClick(id)}
+          type="checkbox"
+        />
+        <span className="tag__appearance">
+          {children}
+        </span>
+      </label>
     )
   }
 }

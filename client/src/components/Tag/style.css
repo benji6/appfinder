@@ -1,22 +1,35 @@
 .tag {
   --size: 1rem;
-  background-color: var(--color-theme);
-  border: none;
-  border-radius: var(--size);
   color: var(--color-white);
   cursor: pointer;
-  outline-color: var(--color-highlight);
+  display: flex;
+  font-size: 0.8rem;
   margin-bottom: var(--size);
-  padding: var(--size);
   transition: .1s background-color ease-in-out;
+}
+
+.tag__appearance {
+  background-color: var(--color-theme);
+  border-radius: var(--size);
+  padding: var(--size);
+}
+
+.tag__input:checked + .tag__appearance {
+  background-color: var(--color-highlight);
+}
+
+.tag__input:focus + .tag__appearance {
+  outline: var(--color-highlight) auto 5px;
 }
 
 .tag:not(:last-child) {
   margin-right: 1rem;
 }
 
-.tag--selected {
-  background-color: var(--color-highlight);
+.tag__input {
+  cursor: inherit;
+  opacity: 0;
+  position: absolute;
 }
 
 @media (min-width: 64rem) {
