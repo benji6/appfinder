@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import AppList from '../AppList'
 import Header from '../Header'
 import Search from '../Search'
-import TagList from '../TagList'
+import CategoryList from '../CategoryList'
 
 class App extends React.PureComponent {
   render() {
@@ -10,7 +10,7 @@ class App extends React.PureComponent {
       <Fragment>
         <Header />
         <Search />
-        <TagList />
+        <CategoryList />
         <AppList />
       </Fragment>
     )

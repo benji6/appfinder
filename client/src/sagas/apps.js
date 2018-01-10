@@ -11,24 +11,24 @@ import {
   appsRequestFail,
   appsRequestSuccess,
   searchQuerySet,
-  tagsToggleSelectedTag,
+  categoriesToggleSelectedCategory,
 } from '../actions'
 import {getApps} from '../api'
 import {querySelector} from '../reducers/search'
 import {
-  selectedTagIdsSelector,
-  tagsByIdSelector,
-} from '../reducers/tags'
+  selectedCategoryIdsSelector,
+  categoriesByIdSelector,
+} from '../reducers/categories'
 
 export function* fetchApps() {
   try {
-    const selectedTagIds = yield select(selectedTagIdsSelector)
+    const selectedCategoryIds = yield select(selectedCategoryIdsSelector)
     const query = yield select(querySelector)
-    const tagsById = yield select(tagsByIdSelector)
-    const selectedTagNames = selectedTagIds.map(id => tagsById[id].name)
+    const categoriesById = yield select(categoriesByIdSelector)
+    const selectedCategoryNames = selectedCategoryIds.map(id => categoriesById[id].name)
     const apps = yield call(getApps, {
       query,
-      tags: selectedTagNames,
+      categories: selectedCategoryNames,
     })
     yield put(appsRequestSuccess(apps))
   } catch (e) {
@@ -40,8 +40,8 @@ function* watchAppsRequest() {
   yield takeLatest(appsRequest, fetchApps)
 }
 
-function* watchTagsToggleSelectedTag() {
-  yield takeLatest(tagsToggleSelectedTag, fetchApps)
+function* watchCategoriesToggleSelectedCategory() {
+  yield takeLatest(categoriesToggleSelectedCategory, fetchApps)
 }
 
 function* watchSearchQuerySet() {
@@ -52,6 +52,6 @@ export default function* appsSaga() {
   yield all([
     fork(watchAppsRequest),
     fork(watchSearchQuerySet),
-    fork(watchTagsToggleSelectedTag),
+    fork(watchCategoriesToggleSelectedCategory),
   ])
 }

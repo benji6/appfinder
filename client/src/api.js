@@ -1,11 +1,11 @@
-export const getApps = ({query, tags}) => {
-  const tagsQueryString = tags.length
-    ? `tags[]=${tags.join('&tags[]=')}`
+export const getApps = ({query, categories}) => {
+  const categoriesQueryString = categories.length
+    ? `categories[]=${categories.join('&categories[]=')}`
     : ''
 
   const queryQueryString = query && `query=${query}`
 
-  const queryStrings = [queryQueryString, tagsQueryString]
+  const queryStrings = [queryQueryString, categoriesQueryString]
     .filter(s => s.length)
 
   const queryString = queryStrings.length
@@ -16,5 +16,5 @@ export const getApps = ({query, tags}) => {
     .then(response => response.json())
 }
 
-export const getTags = () => fetch('http://localhost:3001/tags')
+export const getCategories = () => fetch('http://localhost:3001/categories')
   .then(response => response.json())

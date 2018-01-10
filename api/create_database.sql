@@ -12,18 +12,18 @@ CREATE TABLE apps (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE tags (
+CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(31) NOT NULL,
 
   PRIMARY KEY (id)
 );
 
-CREATE TABLE app_tags (
+CREATE TABLE app_categories (
   app_id INT NOT NULL,
-  tag_id INT NOT NULL,
+  category_id INT NOT NULL,
 
-  PRIMARY KEY (app_id, tag_id),
+  PRIMARY KEY (app_id, category_id),
   FOREIGN KEY (app_id) REFERENCES apps (id),
-  FOREIGN KEY (tag_id) REFERENCES tags (id)
+  FOREIGN KEY (category_id) REFERENCES categories (id)
 );

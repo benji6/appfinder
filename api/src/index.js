@@ -1,6 +1,6 @@
 const cors = require('cors')
 const express = require('express')
-const {getApps, getTags} = require('./database')
+const {getApps, getCategories} = require('./database')
 
 const {PORT} = process.env
 
@@ -11,7 +11,7 @@ app.use(cors())
 app.get('/apps', (req, res) => {
   getApps({
     query: req.query.query || '',
-    tags: req.query.tags || [],
+    categories: req.query.categories || [],
   })
     .then(data => res.send(data))
     .catch(err => {
@@ -20,8 +20,8 @@ app.get('/apps', (req, res) => {
     })
 })
 
-app.get('/tags', (req, res) => {
-  getTags()
+app.get('/categories', (req, res) => {
+  getCategories()
     .then(data => res.send(data))
     .catch(err => {
       res.status(500)

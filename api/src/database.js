@@ -14,26 +14,26 @@ SELECT
   apps.icon_url AS iconUrl,
   apps.name,
   apps.url,
-  GROUP_CONCAT(tags.id) AS tag_ids
+  GROUP_CONCAT(categories.id) AS category_ids
 FROM apps
-LEFT JOIN app_tags ON apps.id = app_tags.app_id
-LEFT JOIN tags ON app_tags.tag_id = tags.id
+LEFT JOIN app_categories ON apps.id = app_categories.app_id
+LEFT JOIN categories ON app_categories.category_id = categories.id
 GROUP BY id
 ORDER BY RAND()
 `
 
-const appsQueryWithTagsFilter = `
+const appsQueryWithCategoriesFilter = `
 SELECT
   apps.id,
   apps.color,
   apps.icon_url AS iconUrl,
   apps.name,
   apps.url,
-  GROUP_CONCAT(tags.id) AS tag_ids
+  GROUP_CONCAT(categories.id) AS category_ids
 FROM apps
-LEFT JOIN app_tags ON apps.id = app_tags.app_id
-LEFT JOIN tags ON app_tags.tag_id = tags.id
-WHERE tags.name IN (?)
+LEFT JOIN app_categories ON apps.id = app_categories.app_id
+LEFT JOIN categories ON app_categories.category_id = categories.id
+WHERE categories.name IN (?)
 GROUP BY id
 ORDER BY RAND()
 `
@@ -45,37 +45,37 @@ SELECT
   apps.icon_url AS iconUrl,
   apps.name,
   apps.url,
-  GROUP_CONCAT(tags.id) AS tag_ids
+  GROUP_CONCAT(categories.id) AS category_ids
 FROM apps
-LEFT JOIN app_tags ON apps.id = app_tags.app_id
-LEFT JOIN tags ON app_tags.tag_id = tags.id
+LEFT JOIN app_categories ON apps.id = app_categories.app_id
+LEFT JOIN categories ON app_categories.category_id = categories.id
 WHERE apps.name LIKE ${query}
-OR tags.name LIKE ${query}
+OR categories.name LIKE ${query}
 GROUP BY id
 ORDER BY RAND()
 `
 
-const appsQueryWithQueryAndTagsFilter = query => `
+const appsQueryWithQueryAndCategoriesFilter = query => `
 SELECT
   apps.id,
   apps.color,
   apps.icon_url AS iconUrl,
   apps.name,
   apps.url,
-  GROUP_CONCAT(tags.id) AS tag_ids
+  GROUP_CONCAT(categories.id) AS category_ids
 FROM apps
-LEFT JOIN app_tags ON apps.id = app_tags.app_id
-LEFT JOIN tags ON app_tags.tag_id = tags.id
-WHERE tags.name IN (?)
+LEFT JOIN app_categories ON apps.id = app_categories.app_id
+LEFT JOIN categories ON app_categories.category_id = categories.id
+WHERE categories.name IN (?)
 AND (
   apps.name LIKE ${query}
-  OR tags.name LIKE ${query}
+  OR categories.name LIKE ${query}
 )
 GROUP BY id
 ORDER BY RAND()
 `
 
-const tagsQuery = 'SELECT * FROM tags ORDER BY name'
+const categoriesQuery = 'SELECT * FROM categories ORDER BY name'
 
 const runQuery = query => new Promise((resolve, reject) => {
   const connection = mysql.createConnection({
@@ -95,16 +95,16 @@ const runQuery = query => new Promise((resolve, reject) => {
   connection.end()
 })
 
-module.exports.getApps = ({query, tags}) => {
+module.exports.getApps = ({query, categories}) => {
   if (query) {
     const escapedQuery = mysql.escape(`%${query}%`)
-    if (tags.length) {
-      return runQuery(mysql.format(appsQueryWithQueryAndTagsFilter(escapedQuery), [tags]))
+    if (categories.length) {
+      return runQuery(mysql.format(appsQueryWithQueryAndCategoriesFilter(escapedQuery), [categories]))
     }
     return runQuery(appsQueryWithQuery(escapedQuery))
   }
-  if (tags.length) return runQuery(mysql.format(appsQueryWithTagsFilter, [tags]))
+  if (categories.length) return runQuery(mysql.format(appsQueryWithCategoriesFilter, [categories]))
   return runQuery(appsQuery)
 }
 
-module.exports.getTags = () => runQuery(tagsQuery)
+module.exports.getCategories = () => runQuery(categoriesQuery)
