@@ -1,0 +1,9 @@
+.search {
+  text-align: center;
+  padding: var(--spacing-x8)
+}
+
+.search__label {
+  font-size: .75rem;
+  margin-right: .25rem;
+}

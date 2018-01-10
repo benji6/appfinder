@@ -1,5 +1,6 @@
 .tag {
   --size: 1rem;
+  --vertical-padding: 1rem;
   color: var(--color-white);
   cursor: pointer;
   display: flex;
@@ -11,7 +12,7 @@
 .tag__appearance {
   background-color: var(--color-theme);
   border-radius: var(--size);
-  padding: var(--size);
+  padding: var(--vertical-padding) var(--size);
 }
 
 .tag__input:checked + .tag__appearance {

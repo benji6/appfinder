@@ -12,6 +12,7 @@ class App extends React.PureComponent {
 
   render() {
     const {apps} = this.props
+
     return (
       <div className="app-list">
         {apps ? (

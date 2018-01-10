@@ -38,6 +38,43 @@ GROUP BY id
 ORDER BY RAND()
 `
 
+const appsQueryWithQuery = query => `
+SELECT
+  apps.id,
+  apps.color,
+  apps.icon_url AS iconUrl,
+  apps.name,
+  apps.url,
+  GROUP_CONCAT(tags.id) AS tag_ids
+FROM apps
+LEFT JOIN app_tags ON apps.id = app_tags.app_id
+LEFT JOIN tags ON app_tags.tag_id = tags.id
+WHERE apps.name LIKE ${query}
+OR tags.name LIKE ${query}
+GROUP BY id
+ORDER BY RAND()
+`
+
+const appsQueryWithQueryAndTagsFilter = query => `
+SELECT
+  apps.id,
+  apps.color,
+  apps.icon_url AS iconUrl,
+  apps.name,
+  apps.url,
+  GROUP_CONCAT(tags.id) AS tag_ids
+FROM apps
+LEFT JOIN app_tags ON apps.id = app_tags.app_id
+LEFT JOIN tags ON app_tags.tag_id = tags.id
+WHERE tags.name IN (?)
+AND (
+  apps.name LIKE ${query}
+  OR tags.name LIKE ${query}
+)
+GROUP BY id
+ORDER BY RAND()
+`
+
 const tagsQuery = 'SELECT * FROM tags ORDER BY name'
 
 const runQuery = query => new Promise((resolve, reject) => {
@@ -58,8 +95,16 @@ const runQuery = query => new Promise((resolve, reject) => {
   connection.end()
 })
 
-module.exports.getApps = tags => tags.length
-  ? runQuery(mysql.format(appsQueryWithTagsFilter, [tags]))
-  : runQuery(appsQuery)
+module.exports.getApps = ({query, tags}) => {
+  if (query) {
+    const escapedQuery = mysql.escape(`%${query}%`)
+    if (tags.length) {
+      return runQuery(mysql.format(appsQueryWithQueryAndTagsFilter(escapedQuery), [tags]))
+    }
+    return runQuery(appsQueryWithQuery(escapedQuery))
+  }
+  if (tags.length) return runQuery(mysql.format(appsQueryWithTagsFilter, [tags]))
+  return runQuery(appsQuery)
+}
 
 module.exports.getTags = () => runQuery(tagsQuery)

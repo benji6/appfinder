@@ -5,6 +5,7 @@ import './style.css'
 class AppCard extends React.PureComponent {
   render() {
     const {color, iconUrl, name, url} = this.props
+
     return (
       <a
         className="app-card"

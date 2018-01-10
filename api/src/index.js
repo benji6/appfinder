@@ -9,7 +9,10 @@ const app = express()
 app.use(cors())
 
 app.get('/apps', (req, res) => {
-  getApps(req.query.tags || [])
+  getApps({
+    query: req.query.query || '',
+    tags: req.query.tags || [],
+  })
     .then(data => res.send(data))
     .catch(err => {
       res.status(500)
