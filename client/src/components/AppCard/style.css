@@ -36,6 +36,7 @@
 
 .app-card__logo-container {
   padding: calc(2rem + var(--cmp-app-card-border-width)) 0 2rem;
+  text-align: center;
 }
 
 .app-card__name {

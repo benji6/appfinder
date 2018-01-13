@@ -5,7 +5,7 @@ import {appsRequest} from '../../actions'
 import AppCard from '../AppCard'
 import './style.css'
 
-class App extends React.PureComponent {
+class SearchResults extends React.PureComponent {
   componentDidMount() {
     this.props.appsRequest()
   }
@@ -14,7 +14,8 @@ class App extends React.PureComponent {
     const {apps} = this.props
 
     return (
-      <div className="app-list">
+      <div className="search-results">
+        <h4>Search results</h4>
         {apps ? (
           apps.map(app => <AppCard key={app.id} {...app} />)
         ) : (
@@ -25,7 +26,7 @@ class App extends React.PureComponent {
   }
 }
 
-App.propTypes = {
+SearchResults.propTypes = {
   apps: PropTypes.arrayOf(PropTypes.object),
   appsRequest: PropTypes.func.isRequired,
 }
@@ -38,4 +39,4 @@ const mapDispatchToProps = {
   appsRequest,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

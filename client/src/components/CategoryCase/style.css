@@ -1,0 +1,16 @@
+.category-case__item-container {
+  display: flex;
+  overflow-x: auto;
+}
+
+.category-case__item-container::-webkit-scrollbar {
+  display: none;
+}
+
+.category-case__item-container > * {
+  flex-shrink: 0;
+}
+
+.category-case__title {
+  margin: 0 0 .5rem .75rem
+}

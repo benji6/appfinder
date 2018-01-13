@@ -4,6 +4,7 @@ import {
   fork,
   put,
   select,
+  takeEvery,
   takeLatest,
 } from 'redux-saga/effects'
 import {
@@ -11,27 +12,29 @@ import {
   appsRequestFail,
   appsRequestSuccess,
   searchQuerySet,
-  categoriesToggleSelectedCategory,
+  categoryCaseMount,
+  categoryCaseGetSuccess,
 } from '../actions'
 import {getApps} from '../api'
-import {querySelector} from '../reducers/search'
-import {
-  selectedCategoryIdsSelector,
-  categoriesByIdSelector,
-} from '../reducers/categories'
+import {searchQuerySelector} from '../reducers/search'
 
 export function* fetchApps() {
   try {
-    const selectedCategoryIds = yield select(selectedCategoryIdsSelector)
-    const query = yield select(querySelector)
-    const categoriesById = yield select(categoriesByIdSelector)
-    const selectedCategoryNames = selectedCategoryIds.map(id => categoriesById[id].name)
-    const apps = yield call(getApps, {
-      query,
-      categories: selectedCategoryNames,
-    })
+    const query = yield select(searchQuerySelector)
+    const apps = yield call(getApps, {query})
     yield put(appsRequestSuccess(apps))
   } catch (e) {
+    console.error(e)
+    yield put(appsRequestFail())
+  }
+}
+
+export function* fetchAppsForCategoryCase({payload: category}) {
+  try {
+    const apps = yield call(getApps, {category})
+    yield put(categoryCaseGetSuccess({apps, category}))
+  } catch (e) {
+    console.error(e)
     yield put(appsRequestFail())
   }
 }
@@ -40,8 +43,8 @@ function* watchAppsRequest() {
   yield takeLatest(appsRequest, fetchApps)
 }
 
-function* watchCategoriesToggleSelectedCategory() {
-  yield takeLatest(categoriesToggleSelectedCategory, fetchApps)
+function* watchCategoryCaseMount() {
+  yield takeEvery(categoryCaseMount, fetchAppsForCategoryCase)
 }
 
 function* watchSearchQuerySet() {
@@ -51,7 +54,7 @@ function* watchSearchQuerySet() {
 export default function* appsSaga() {
   yield all([
     fork(watchAppsRequest),
+    fork(watchCategoryCaseMount),
     fork(watchSearchQuerySet),
-    fork(watchCategoriesToggleSelectedCategory),
   ])
 }

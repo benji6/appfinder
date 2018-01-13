@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
 import apps from './apps'
 import search from './search'
-import categories from './categories'
+import categoryCases from './categoryCases'
 
 export default combineReducers({
   apps,
   search,
-  categories,
+  categoryCases,
 })

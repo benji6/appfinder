@@ -1,11 +1,9 @@
-export const getApps = ({query, categories}) => {
-  const categoriesQueryString = categories.length
-    ? `categories[]=${categories.join('&categories[]=')}`
-    : ''
+export const getApps = ({query, category}) => {
+  const categoryQueryString = category ? `category=${category}` : ''
 
-  const queryQueryString = query && `query=${query}`
+  const queryQueryString = query ? `query=${query}` : ''
 
-  const queryStrings = [queryQueryString, categoriesQueryString]
+  const queryStrings = [categoryQueryString, queryQueryString]
     .filter(s => s.length)
 
   const queryString = queryStrings.length
