@@ -3,15 +3,16 @@
   --cmp-app-card-border-width: .2rem;
   --color-highlight: #ffae00;
   --color-theme: #242424;
+  --color-gray-light: #cecece;
   --color-white: #f6f6f6;
   --color-white-pure: #fff;
-  --content-max-width: 64rem;
+  --content-max-width: 72rem;
   --spacing-x1: .125rem;
   --spacing-x4: calc(var(--spacing-x1) * 4);
   --spacing-x8: calc(var(--spacing-x1) * 8);
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 72rem) {
   :root {
     --spacing-x1: .25rem;
   }

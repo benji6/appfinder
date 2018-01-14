@@ -4,7 +4,7 @@
   margin: var(--spacing-x4);
   border-radius: var(--cmp-app-card-border-radius);
   text-decoration: none;
-  box-shadow: 0 0 .5rem #000;
+  box-shadow: .2rem .2rem .25rem rgba(0, 0, 0, .5);
   outline: 0;
   transition-duration: .1s;
   transition-property: box-shadow;
@@ -25,7 +25,7 @@
 
 .app-card:focus,
 .app-card:hover {
-  box-shadow: 0 0 .75rem rgba(0, 0, 0, 0.5);
+  box-shadow: .3rem .3rem .5rem rgba(0, 0, 0, .5);
 }
 
 .app-card:focus::after,

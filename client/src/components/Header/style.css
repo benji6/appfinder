@@ -1,6 +1,6 @@
 .header {
   background-color: var(--color-theme);
-  box-shadow: 0 0 var(--spacing-x8) var(--color-theme);
+  box-shadow: 0 .175rem .2rem rgba(0, 0, 0, .5);
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: var(--spacing-x8) 0;
@@ -9,9 +9,8 @@
   z-index: 1;
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 72rem) {
   .header {
-    border-radius: .333rem;
     padding: var(--spacing-x8) 0;
   }
 }
