@@ -1,6 +1,7 @@
 const cors = require('cors')
 const express = require('express')
 const {getApps} = require('./database/apps')
+const {SEARCH_QUERY_MAX_LENGTH} = require('./constants')
 
 const {PORT} = process.env
 
@@ -9,8 +10,15 @@ const app = express()
 app.use(cors())
 
 app.get('/apps', (req, res) => {
+  const {query} = req.query
+
+  if (query && query.length > SEARCH_QUERY_MAX_LENGTH) {
+    res.status(400).send(`query param exceeds maxLength of ${SEARCH_QUERY_MAX_LENGTH}`)
+    return
+  }
+
   getApps({
-    query: req.query.query || '',
+    query: query || '',
     category: req.query.category,
   })
     .then(data => res.send(data))

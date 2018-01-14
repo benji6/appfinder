@@ -20,7 +20,7 @@ import {searchQuerySelector} from '../reducers/search'
 
 export function* fetchApps() {
   try {
-    const query = yield select(searchQuerySelector)
+    const query = (yield select(searchQuerySelector)).trim()
     const apps = yield call(getApps, {query})
     yield put(appsRequestSuccess(apps))
   } catch (e) {

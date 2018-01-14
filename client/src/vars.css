@@ -4,6 +4,7 @@
   --color-highlight: #ffae00;
   --color-theme: #242424;
   --color-white: #f6f6f6;
+  --color-white-pure: #fff;
   --content-max-width: 64rem;
   --spacing-x1: .125rem;
   --spacing-x4: calc(var(--spacing-x1) * 4);
