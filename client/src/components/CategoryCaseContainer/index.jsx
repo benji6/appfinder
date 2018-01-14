@@ -6,6 +6,7 @@ class CategoryCaseContainer extends React.PureComponent {
   render() {
     return (
       <div className="category-case-container">
+        <h2>Browse apps</h2>
         <CategoryCase category="business" />
         <CategoryCase category="demo" />
         <CategoryCase category="game" />

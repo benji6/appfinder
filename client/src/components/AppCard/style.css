@@ -7,7 +7,7 @@
   box-shadow: 0 0 .5rem #000;
   outline: 0;
   transition-duration: .1s;
-  transition-property: box-shadow, transform;
+  transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   width: 10rem;
 }
@@ -26,7 +26,6 @@
 .app-card:focus,
 .app-card:hover {
   box-shadow: 0 0 .75rem rgba(0, 0, 0, 0.5);
-  transform: scale(1.03);
 }
 
 .app-card:focus::after,

@@ -1,4 +1,10 @@
+.category-case {
+  margin-bottom: 1.5rem;
+}
+
 .category-case__item-container {
+  border-bottom: 2px solid var(--color-theme);
+  border-top: 2px solid var(--color-theme);
   display: flex;
   overflow-x: auto;
 }

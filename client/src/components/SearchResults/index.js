@@ -15,7 +15,7 @@ class SearchResults extends React.PureComponent {
 
     return (
       <div className="search-results">
-        <h4>Search results</h4>
+        <h2>Search results</h2>
         {apps ? (
           apps.map(app => <AppCard key={app.id} {...app} />)
         ) : (

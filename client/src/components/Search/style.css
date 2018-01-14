@@ -5,6 +5,7 @@
   margin: 0 auto;
   max-width: 20rem;
   padding: 1.5rem 1rem;
+  border-bottom: 2px solid var(--color-theme);
 }
 
 .search__close-button {

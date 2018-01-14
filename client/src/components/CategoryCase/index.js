@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, {Fragment} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {categoryCaseMount} from '../../actions'
 import {categoryCaseAppsSelector} from '../../reducers/categoryCases'
@@ -17,14 +17,14 @@ class CategoryCase extends React.PureComponent {
     const {category, apps} = this.props
 
     return (
-      <Fragment>
-        <h4 className="category-case__title">{capitalizeFirst(category)}</h4>
+      <div className="category-case">
+        <h3 className="category-case__title">{capitalizeFirst(category)}</h3>
         <div className="category-case__item-container">
           {apps
             ? apps.map(app => <AppCard key={app.id} {...app} />)
             : 'LOADING'}
         </div>
-      </Fragment>
+      </div>
     )
   }
 }
