@@ -4,6 +4,10 @@ import {connect} from 'react-redux'
 import {searchResultsClear} from '../../actions'
 import AppCard from '../AppCard'
 import Spinner from '../Spinner'
+import {
+  searchResultsAppsSelector,
+  searchIsLoadingSelector,
+} from '../../reducers/search'
 import './style.css'
 
 class SearchResults extends React.PureComponent {
@@ -12,15 +16,17 @@ class SearchResults extends React.PureComponent {
   }
 
   render() {
-    const {apps} = this.props
+    const {apps, isLoading} = this.props
 
     return (
       <div className="search-results">
         <h2>Search results</h2>
-        {apps ? (
+        {apps.length ? (
           apps.map(app => <AppCard key={app.id} {...app} />)
-        ) : (
+        ) : isLoading ? (
           <Spinner />
+        ) : (
+          <div className="search-results__no-results">No results found</div>
         )}
       </div>
     )
@@ -30,10 +36,12 @@ class SearchResults extends React.PureComponent {
 SearchResults.propTypes = {
   apps: PropTypes.arrayOf(PropTypes.object),
   handleUnmount: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = ({apps}) => ({
-  apps: apps.ids && apps.ids.map(id => apps.byId[id]),
+const mapStateToProps = state => ({
+  apps: searchResultsAppsSelector(state),
+  isLoading: searchIsLoadingSelector(state),
 })
 
 const mapDispatchToProps = {

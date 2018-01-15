@@ -8,25 +8,28 @@ import {
   takeLatest,
 } from 'redux-saga/effects'
 import {
-  appsRequestFail,
-  appsRequestSuccess,
-  searchQuerySet,
-  categoryCaseMount,
   categoryCaseGetSuccess,
+  categoryCaseMount,
+  searchQuerySet,
+  searchRequest,
+  searchRequestFail,
+  searchRequestSuccess,
 } from '../actions'
 import {getApps} from '../api'
 
 export function* fetchApps({payload: query}) {
   if (!query) return
 
+  yield put(searchRequest())
+
   yield call(delay, 500)
 
   try {
     const apps = yield call(getApps, {query})
-    yield put(appsRequestSuccess(apps))
+    yield put(searchRequestSuccess(apps))
   } catch (e) {
     console.error(e)
-    yield put(appsRequestFail())
+    yield put(searchRequestFail())
   }
 }
 
@@ -36,7 +39,7 @@ export function* fetchAppsForCategoryCase({payload: category}) {
     yield put(categoryCaseGetSuccess({apps, category}))
   } catch (e) {
     console.error(e)
-    yield put(appsRequestFail())
+    yield put(searchRequestFail())
   }
 }
 
