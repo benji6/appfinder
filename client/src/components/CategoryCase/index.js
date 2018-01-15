@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {categoryCaseMount} from '../../actions'
 import {categoryCaseAppsSelector} from '../../reducers/categoryCases'
 import AppCard from '../AppCard'
+import Spinner from '../Spinner'
 import './style.css'
 
 const capitalizeFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('')
@@ -22,7 +23,7 @@ class CategoryCase extends React.PureComponent {
         <div className="category-case__item-container">
           {apps
             ? apps.map(app => <AppCard key={app.id} {...app} />)
-            : 'LOADING'}
+            : <Spinner />}
         </div>
       </div>
     )

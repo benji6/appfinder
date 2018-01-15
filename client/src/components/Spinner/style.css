@@ -1,0 +1,15 @@
+.spinner {
+  --diameter: 2.5rem;
+  animation: rotate 1s infinite linear;
+  border: calc(var(--diameter) / 6) solid var(--color-gray);
+  border-left-color: var(--color-highlight);
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: var(--diameter);
+  margin: 2rem auto;
+  width: var(--diameter);
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}

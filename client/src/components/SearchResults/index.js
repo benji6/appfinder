@@ -3,6 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {appsRequest} from '../../actions'
 import AppCard from '../AppCard'
+import Spinner from '../Spinner'
 import './style.css'
 
 class SearchResults extends React.PureComponent {
@@ -19,7 +20,7 @@ class SearchResults extends React.PureComponent {
         {apps ? (
           apps.map(app => <AppCard key={app.id} {...app} />)
         ) : (
-          'LOADING'
+          <Spinner />
         )}
       </div>
     )
