@@ -1,14 +1,13 @@
+import {delay} from 'redux-saga'
 import {
   all,
   call,
   fork,
   put,
-  select,
   takeEvery,
   takeLatest,
 } from 'redux-saga/effects'
 import {
-  appsRequest,
   appsRequestFail,
   appsRequestSuccess,
   searchQuerySet,
@@ -16,11 +15,13 @@ import {
   categoryCaseGetSuccess,
 } from '../actions'
 import {getApps} from '../api'
-import {searchQuerySelector} from '../reducers/search'
 
-export function* fetchApps() {
+export function* fetchApps({payload: query}) {
+  if (!query) return
+
+  yield call(delay, 500)
+
   try {
-    const query = (yield select(searchQuerySelector)).trim()
     const apps = yield call(getApps, {query})
     yield put(appsRequestSuccess(apps))
   } catch (e) {
@@ -39,10 +40,6 @@ export function* fetchAppsForCategoryCase({payload: category}) {
   }
 }
 
-function* watchAppsRequest() {
-  yield takeLatest(appsRequest, fetchApps)
-}
-
 function* watchCategoryCaseMount() {
   yield takeEvery(categoryCaseMount, fetchAppsForCategoryCase)
 }
@@ -53,7 +50,6 @@ function* watchSearchQuerySet() {
 
 export default function* appsSaga() {
   yield all([
-    fork(watchAppsRequest),
     fork(watchCategoryCaseMount),
     fork(watchSearchQuerySet),
   ])

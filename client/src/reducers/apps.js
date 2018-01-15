@@ -1,5 +1,8 @@
 import {handleActions} from 'redux-actions'
-import {appsRequestSuccess} from '../actions'
+import {
+  appsRequestSuccess,
+  searchResultsClear,
+} from '../actions'
 
 const initialState = {
   byId: null,
@@ -17,4 +20,5 @@ export default handleActions({
     }
     return {...state, byId, ids}
   },
+  [searchResultsClear]: () => initialState,
 }, initialState)

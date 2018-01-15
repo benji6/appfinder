@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
-import {appsRequest} from '../../actions'
+import {searchResultsClear} from '../../actions'
 import AppCard from '../AppCard'
 import Spinner from '../Spinner'
 import './style.css'
 
 class SearchResults extends React.PureComponent {
-  componentDidMount() {
-    this.props.appsRequest()
+  componentWillUnmount() {
+    this.props.handleUnmount()
   }
 
   render() {
@@ -29,7 +29,7 @@ class SearchResults extends React.PureComponent {
 
 SearchResults.propTypes = {
   apps: PropTypes.arrayOf(PropTypes.object),
-  appsRequest: PropTypes.func.isRequired,
+  handleUnmount: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({apps}) => ({
@@ -37,7 +37,7 @@ const mapStateToProps = ({apps}) => ({
 })
 
 const mapDispatchToProps = {
-  appsRequest,
+  handleUnmount: searchResultsClear,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)
