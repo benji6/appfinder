@@ -2,6 +2,10 @@
   margin-bottom: 1.5rem;
 }
 
+.category-case__end {
+  width: 1px;
+}
+
 .category-case__item-container {
   border-bottom: 2px solid var(--color-theme);
   border-top: 2px solid var(--color-theme);

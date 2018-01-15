@@ -24,6 +24,7 @@ class CategoryCase extends React.PureComponent {
           {apps
             ? apps.map(app => <AppCard key={app.id} {...app} />)
             : <Spinner />}
+          <div className="category-case__end" />
         </div>
       </div>
     )
