@@ -6,6 +6,11 @@
   width: 1px;
 }
 
+.category-case__header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .category-case__item-container {
   border-bottom: 2px solid var(--color-theme);
   border-top: 2px solid var(--color-theme);
@@ -19,6 +24,22 @@
 
 .category-case__item-container > * {
   flex-shrink: 0;
+}
+
+.category-case__scroll-button {
+  --size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: var(--size);
+  margin-right: .25rem;
+  outline: none;
+  padding: 0;
+  width: var(--size);
+}
+
+.category-case__scroll-button:last-child {
+  margin-right: .5rem;
 }
 
 .category-case__title {

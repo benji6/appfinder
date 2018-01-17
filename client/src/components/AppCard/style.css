@@ -1,15 +1,15 @@
 .app-card {
-  display: inline-block;
-  position: relative;
-  margin: var(--spacing-x4);
   border-radius: var(--cmp-app-card-border-radius);
-  text-decoration: none;
   box-shadow: .2rem .2rem .25rem rgba(0, 0, 0, .5);
+  display: inline-block;
+  margin: var(--cmp-app-card-spacing);
   outline: 0;
+  position: relative;
+  text-decoration: none;
   transition-duration: .1s;
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 10rem;
+  width: var(--cmp-app-card-width);
 }
 
 .app-card::after {
