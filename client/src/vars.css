@@ -1,8 +1,10 @@
 :root {
   --cmp-app-card-border-radius: .5rem;
   --cmp-app-card-border-width: .2rem;
+  --cmp-app-card-logo-size: 4.5rem;
+  --cmp-app-card-name-font-size: .9rem;
   --cmp-app-card-spacing: .5rem;
-  --cmp-app-card-width: 10rem;
+  --cmp-app-card-width: 9rem;
   --color-gray: #646464;
   --color-gray-light: #cecece;
   --color-highlight: #ffae00;
@@ -17,6 +19,9 @@
 
 @media (min-width: 72rem) {
   :root {
+    --cmp-app-card-logo-size: 6rem;
+    --cmp-app-card-name-font-size: 1rem;
+    --cmp-app-card-width: 10rem;
     --spacing-x1: .25rem;
   }
 }

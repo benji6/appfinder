@@ -33,7 +33,13 @@
   border-color: var(--color-highlight);
 }
 
+.app-card__logo {
+  height: var(--cmp-app-card-logo-size);
+  width: var(--cmp-app-card-logo-size);
+}
+
 .app-card__logo-container {
+  --padding: calc(var(--cmp-app-card-logo-size) / 9 * 2);
   padding: calc(2rem + var(--cmp-app-card-border-width)) 0 2rem;
   text-align: center;
 }
@@ -44,6 +50,7 @@
   border-bottom-right-radius: var(--cmp-app-card-border-radius);
   box-sizing: border-box;
   color: var(--color-white);
+  font-size: var(--cmp-app-card-name-font-size);
   overflow: hidden;
   padding: .5rem .75rem .667rem;
   text-align: center;

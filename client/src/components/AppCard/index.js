@@ -13,7 +13,11 @@ class AppCard extends React.PureComponent {
         style={{backgroundColor: color}}
       >
         <div className="app-card__logo-container">
-          <img alt="app logo" height="96" src={iconUrl} width="96" />
+          <img
+            className="app-card__logo"
+            alt="app logo"
+            src={iconUrl}
+          />
         </div>
         <div className="app-card__name">{name}</div>
       </a>
