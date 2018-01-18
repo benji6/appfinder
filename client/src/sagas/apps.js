@@ -4,6 +4,7 @@ import {
   call,
   fork,
   put,
+  select,
   takeEvery,
   takeLatest,
 } from 'redux-saga/effects'
@@ -16,6 +17,7 @@ import {
   searchRequestSuccess,
 } from '../actions'
 import {getApps} from '../api'
+import {categoryCaseLastUpdatedSelector} from '../reducers/categoryCases'
 
 export function* fetchApps({payload: query}) {
   if (!query) return
@@ -34,6 +36,10 @@ export function* fetchApps({payload: query}) {
 }
 
 export function* fetchAppsForCategoryCase({payload: category}) {
+  const lastUpdated = yield select(categoryCaseLastUpdatedSelector, {category})
+
+  if (lastUpdated && Date.now() - lastUpdated < 6e5) return
+
   try {
     const apps = yield call(getApps, {category})
     yield put(categoryCaseGetSuccess({apps, category}))
