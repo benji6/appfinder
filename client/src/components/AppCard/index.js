@@ -10,7 +10,9 @@ class AppCard extends React.PureComponent {
       <a
         className="app-card"
         href={url}
+        rel="noopener noreferrer"
         style={{backgroundColor: color}}
+        target="_blank"
       >
         <div className="app-card__logo-container">
           <img
