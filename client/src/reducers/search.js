@@ -2,7 +2,7 @@ import {handleActions} from 'redux-actions'
 import {
   searchQueryClear,
   searchQuerySet,
-  searchRequest,
+  searchRequestInitiate,
   searchRequestSuccess,
   searchResultsClear,
 } from '../actions'
@@ -25,7 +25,7 @@ export const searchQuerySelector = state => state.search.query
 export default handleActions({
   [searchQueryClear]: state => ({...state, query: initialState.query}),
   [searchQuerySet]: (state, {payload}) => ({...state, query: payload}),
-  [searchRequest]: state => ({...state, isLoading: true}),
+  [searchRequestInitiate]: state => ({...state, isLoading: true}),
   [searchRequestSuccess]: (state, {payload}) => {
     const allIds = []
     const byId = {}

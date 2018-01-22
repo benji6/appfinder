@@ -13,21 +13,29 @@ import {
   categoryCaseMount,
   searchQuerySet,
   searchRequest,
+  searchRequestInitiate,
   searchRequestFail,
   searchRequestSuccess,
 } from '../actions'
 import {getApps} from '../api'
 import {categoryCaseLastUpdatedSelector} from '../reducers/categoryCases'
+import {searchQuerySelector} from '../reducers/search'
 
 export function* fetchApps({payload: query}) {
-  if (!query) return
+  const previousQuery = yield select(searchQuerySelector)
 
-  yield put(searchRequest())
+  const trimmedQuery = query.trim()
+
+  yield put(searchQuerySet(query))
+
+  if (!query || trimmedQuery === previousQuery.trim()) return
+
+  yield put(searchRequestInitiate())
 
   yield call(delay, 500)
 
   try {
-    const apps = yield call(getApps, {query})
+    const apps = yield call(getApps, {query: trimmedQuery})
     yield put(searchRequestSuccess(apps))
   } catch (e) {
     console.error(e)
@@ -54,7 +62,7 @@ function* watchCategoryCaseMount() {
 }
 
 function* watchSearchQuerySet() {
-  yield takeLatest(searchQuerySet, fetchApps)
+  yield takeLatest(searchRequest, fetchApps)
 }
 
 export default function* appsSaga() {

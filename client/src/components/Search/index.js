@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import React from 'react'
-import {searchQueryClear, searchQuerySet} from '../../actions'
+import {searchQueryClear, searchRequest} from '../../actions'
 import {searchQuerySelector} from '../../reducers/search'
 import CloseButton from './CloseButton'
 import {SEARCH_QUERY_MAX_LENGTH} from '../../constants'
@@ -70,7 +70,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  handleChange: searchQuerySet,
+  handleChange: searchRequest,
   handleClear: searchQueryClear,
 }
 
