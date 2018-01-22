@@ -5,13 +5,15 @@
   --cmp-app-card-name-font-size: .9rem;
   --cmp-app-card-spacing: .5rem;
   --cmp-app-card-width: 9rem;
+  --cmp-search-background-color: var(--color-gray-light);
   --color-gray: #646464;
-  --color-gray-light: #cecece;
+  --color-gray-light: #d2d2d2;
   --color-highlight: #ffae00;
   --color-theme: #242424;
   --color-white: #f6f6f6;
   --color-white-pure: #fff;
   --content-max-width: 72rem;
+  --global-body-background-color: var(--color-white);
   --spacing-x1: .125rem;
   --spacing-x4: calc(var(--spacing-x1) * 4);
   --spacing-x8: calc(var(--spacing-x1) * 8);
@@ -22,6 +24,8 @@
     --cmp-app-card-logo-size: 6rem;
     --cmp-app-card-name-font-size: 1rem;
     --cmp-app-card-width: 10rem;
+    --cmp-search-background-color: var(--color-white);
+    --global-body-background-color: var(--color-gray-light);
     --spacing-x1: .25rem;
   }
 }

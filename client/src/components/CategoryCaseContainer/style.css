@@ -1,10 +1,5 @@
 .category-case-container {
+  background-color: var(--color-white);
   max-width: var(--content-max-width);
   margin: 0 auto;
-}
-
-@media (min-width: 72rem) {
-  .category-case-container {
-    background-color: var(--color-gray-light);
-  }
 }

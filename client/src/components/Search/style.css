@@ -1,6 +1,6 @@
 .search {
   --border-radius: .25rem;
-  background-color: var(--color-gray-light);
+  background-color: var(--cmp-search-background-color);
   border-bottom: 2px solid var(--color-theme);
   display: flex;
   justify-content: center;

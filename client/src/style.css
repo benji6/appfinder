@@ -1,5 +1,5 @@
 body {
-  background-color: var(--color-white);
+  background-color: var(--global-body-background-color);
   font-family: system-ui, sans-serif;
   margin: 0;
   user-select: none;
