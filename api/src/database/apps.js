@@ -41,6 +41,9 @@ GROUP BY id
 ORDER BY RAND()
 `
 
+const escapeWildcards = str => str.replace(/%/g, '\\%').replace(/_/g, '\\_')
+const insertWildcards = str => str.replace(/\*/g, '%')
+
 const runQuery = query => new Promise((resolve, reject) => {
   const connection = mysql.createConnection({
     host: MYSQL_HOST,
@@ -64,7 +67,7 @@ module.exports.getApps = ({query, category}) => {
     return runQuery(mysql.format(appsQueryWithCategory, [category]))
   }
   if (query) {
-    const escapedQuery = mysql.escape(`%${query}%`)
+    const escapedQuery = mysql.escape(`%${insertWildcards(escapeWildcards(query))}%`)
     return runQuery(appsQueryWithQuery(escapedQuery))
   }
   return runQuery(appsQuery)
