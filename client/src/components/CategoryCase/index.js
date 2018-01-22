@@ -8,18 +8,19 @@ import Spinner from '../Spinner'
 import './style.css'
 
 const capitalizeFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('')
-const remPropertyToPx = rem => parseInt(rem, 10) * 16
+const remPropertyToPx = rem => parseFloat(rem, 10) * 16
+const styles = getComputedStyle(document.documentElement)
+const scrollAmount = () => {
+  const spacing = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-spacing'))
+  const width = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-width'))
+  return spacing * 2 + width
+}
 
 class CategoryCase extends React.PureComponent {
   constructor(props) {
     super(props)
     this.handleLeftButtonClick = this.handleLeftButtonClick.bind(this)
     this.handleRightButtonClick = this.handleRightButtonClick.bind(this)
-
-    const styles = getComputedStyle(document.documentElement)
-    const spacing = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-spacing'))
-    const width = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-width'))
-    this.scrollAmount = spacing + width
   }
 
   componentDidMount() {
@@ -27,11 +28,11 @@ class CategoryCase extends React.PureComponent {
   }
 
   handleLeftButtonClick() {
-    this.itemContainer.scrollBy(-176, 0)
+    this.itemContainer.scrollBy(-scrollAmount(), 0)
   }
 
   handleRightButtonClick() {
-    this.itemContainer.scrollBy(176, 0)
+    this.itemContainer.scrollBy(scrollAmount(), 0)
   }
 
   render() {
