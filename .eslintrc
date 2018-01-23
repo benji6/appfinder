@@ -7,6 +7,7 @@
   "rules": {
     "arrow-parens": [2,"as-needed"],
     "import/prefer-default-export": 0,
+    "jsx-a11y/anchor-is-valid": 0,
     "no-confusing-arrow": 0,
     "no-mixed-operators": 0,
     "no-nested-ternary": 0,

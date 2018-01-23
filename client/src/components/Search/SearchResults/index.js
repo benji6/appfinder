@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
-import {searchResultsClear} from '../../actions'
-import AppCard from '../AppCard'
-import Spinner from '../Spinner'
+import {searchResultsClear} from '../../../actions'
+import AppCard from '../../generic/AppCard'
+import Spinner from '../../generic/Spinner'
 import {
   searchResultsAppsSelector,
   searchIsLoadingSelector,
-} from '../../reducers/search'
+  searchQuerySelector,
+} from '../../../reducers/search'
 import './style.css'
 
 class SearchResults extends React.PureComponent {
@@ -16,7 +17,9 @@ class SearchResults extends React.PureComponent {
   }
 
   render() {
-    const {apps, isLoading} = this.props
+    const {apps, isLoading, isUserSearching} = this.props
+
+    if (!isUserSearching) return null
 
     return (
       <div className="search-results">
@@ -37,11 +40,13 @@ SearchResults.propTypes = {
   apps: PropTypes.arrayOf(PropTypes.object),
   handleUnmount: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isUserSearching: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
   apps: searchResultsAppsSelector(state),
   isLoading: searchIsLoadingSelector(state),
+  isUserSearching: Boolean(searchQuerySelector(state)),
 })
 
 const mapDispatchToProps = {

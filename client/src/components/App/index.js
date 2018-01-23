@@ -1,35 +1,21 @@
-import PropTypes from 'prop-types'
 import React, {Fragment} from 'react'
-import {connect} from 'react-redux'
-import SearchResults from '../SearchResults'
-import Header from '../Header'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Header from './Header'
+import Browse from '../Browse'
 import Search from '../Search'
-import CategoryCaseContainer from '../CategoryCaseContainer'
-import {searchQuerySelector} from '../../reducers/search'
 
 class App extends React.PureComponent {
   render() {
-    const {isUserSearching} = this.props
     return (
-      <Fragment>
-        <Header />
-        <Search />
-        {isUserSearching ? (
-          <SearchResults />
-        ) : (
-          <CategoryCaseContainer />
-        )}
-      </Fragment>
+      <Router>
+        <Fragment>
+          <Header />
+          <Route exact path="/" component={Browse} />
+          <Route path="/search" component={Search} />
+        </Fragment>
+      </Router>
     )
   }
 }
 
-App.propTypes = {
-  isUserSearching: PropTypes.bool.isRequired,
-}
-
-const mapStateToProps = state => ({
-  isUserSearching: Boolean(searchQuerySelector(state)),
-})
-
-export default connect(mapStateToProps)(App)
+export default App

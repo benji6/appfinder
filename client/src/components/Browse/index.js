@@ -1,11 +1,11 @@
 import React from 'react'
-import CategoryCase from '../CategoryCase'
+import CategoryCase from './CategoryCase'
 import './style.css'
 
-class CategoryCaseContainer extends React.PureComponent {
+class Browse extends React.PureComponent {
   render() {
     return (
-      <div className="category-case-container">
+      <div className="browse">
         <h2>Browse apps</h2>
         <CategoryCase category="business" />
         <CategoryCase category="demo" />
@@ -20,4 +20,4 @@ class CategoryCaseContainer extends React.PureComponent {
   }
 }
 
-export default CategoryCaseContainer
+export default Browse

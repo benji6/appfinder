@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
-import {categoryCaseMount} from '../../actions'
-import {categoryCaseAppsSelector} from '../../reducers/categoryCases'
-import AppCard from '../AppCard'
-import Spinner from '../Spinner'
+import {categoryCaseMount} from '../../../actions'
+import {categoryCaseAppsSelector} from '../../../reducers/categoryCases'
+import AppCard from '../../generic/AppCard'
+import Spinner from '../../generic/Spinner'
 import './style.css'
 
 const capitalizeFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('')
