@@ -18,7 +18,7 @@ class AppCard extends React.PureComponent {
           <img
             className="app-card__logo"
             alt={`${name} logo`}
-            src={iconUrl}
+            src={`/${iconUrl}`}
           />
         </div>
         <div className="app-card__name">{name}</div>
