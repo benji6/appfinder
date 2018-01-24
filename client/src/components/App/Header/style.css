@@ -19,7 +19,7 @@
 
 .header__link {
   --padding: 1rem;
-  color: var(--color-gray-light);
+  color: var(--color-gray);
   text-decoration: none;
   font-weight: 900;
 }
