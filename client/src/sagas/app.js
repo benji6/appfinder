@@ -1,7 +1,5 @@
 import {
-  all,
   call,
-  fork,
   put,
   takeLatest,
 } from 'redux-saga/effects'
@@ -20,12 +18,6 @@ function* fetchApp({payload}) {
   }
 }
 
-function* watchAppDetailsMount() {
+export default function* watchAppDetailsMount() {
   yield takeLatest(appDetailsMount, fetchApp)
-}
-
-export default function* appSaga() {
-  yield all([
-    fork(watchAppDetailsMount),
-  ])
 }

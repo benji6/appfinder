@@ -1,7 +1,9 @@
 import {handleActions} from 'redux-actions'
 import {appGetSuccess} from '../actions'
 
-const initialState = {}
+const initialState = {
+  categoryIds: [],
+}
 
 export default handleActions({
   [appGetSuccess]: (state, {payload}) => payload,

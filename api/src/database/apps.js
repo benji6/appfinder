@@ -38,7 +38,7 @@ ORDER BY RAND()
 const escapeWildcards = str => str.replace(/%/g, '\\%').replace(/_/g, '\\_')
 const insertWildcards = str => str.replace(/\*/g, '%')
 
-module.exports.getApps = ({query, category}) => {
+exports.getApps = ({query, category}) => {
   if (category) {
     return runQuery(mysql.format(appsQueryWithCategory, [category]))
   }

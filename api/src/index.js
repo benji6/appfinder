@@ -2,6 +2,7 @@ const cors = require('cors')
 const express = require('express')
 const {getApp} = require('./database/app')
 const {getApps} = require('./database/apps')
+const {getCategories} = require('./database/categories')
 const {SEARCH_QUERY_MAX_LENGTH} = require('./constants')
 
 const {PORT} = process.env
@@ -11,14 +12,9 @@ const app = express()
 app.use(cors())
 
 app.get('/app/:id', (req, res) => {
-  const {id} = req.params
-
-  getApp(id)
+  getApp(req.params.id)
     .then(data => res.send(data))
-    .catch(err => {
-      res.status(500)
-      res.send(err)
-    })
+    .catch(err => res.status(500).send(err))
 })
 
 app.get('/apps', (req, res) => {
@@ -34,10 +30,13 @@ app.get('/apps', (req, res) => {
     category: req.query.category,
   })
     .then(data => res.send(data))
-    .catch(err => {
-      res.status(500)
-      res.send(err)
-    })
+    .catch(err => res.status(500).send(err))
+})
+
+app.get('/categories', (req, res) => {
+  getCategories()
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err))
 })
 
 app.listen(PORT, () => process.stdout.write(`api listening on port ${PORT}\n`))

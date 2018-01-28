@@ -3,6 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Spinner from '../generic/Spinner'
 import {appDetailsMount} from '../../actions'
+import {categoriesHaveLoadedSelector} from '../../reducers/categories'
 import './style.css'
 
 class AppDetails extends React.PureComponent {
@@ -12,10 +13,16 @@ class AppDetails extends React.PureComponent {
   }
 
   render() {
-    const {urlId, ...rest} = this.props
-    const {color, iconUrl, id, name, url} = rest
+    const {
+      categoryNames,
+      color,
+      iconUrl,
+      isLoading,
+      name,
+      url,
+    } = this.props
 
-    if (!id || id !== urlId) return <Spinner />
+    if (isLoading) return <Spinner />
 
     return (
       <div className="app-details">
@@ -43,21 +50,46 @@ class AppDetails extends React.PureComponent {
             In a future release we will have loads of information about this app. Stay tuned!
           </div>
         </div>
+        <div className="app-details__categories-container">
+          <h3 className="app-details__categories-title">Categories:</h3>
+          <div className="app-details__category-container">
+            {categoryNames.map(categoryName => (
+              <div className="app-details__category" key={categoryName}>
+                {categoryName}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     )
   }
 }
 
 AppDetails.propTypes = {
+  categoryNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  color: PropTypes.string,
   handleMount: PropTypes.func.isRequired,
+  iconUrl: PropTypes.string,
   id: PropTypes.number,
+  isLoading: PropTypes.bool.isRequired,
+  name: PropTypes.string,
+  url: PropTypes.string,
   urlId: PropTypes.number.isRequired,
 }
 
-const mapStateToProps = (state, {match: {params: {id}}}) => ({
-  ...state.app,
-  urlId: Number(id),
-})
+const mapStateToProps = (state, {match: {params: {id}}}) => {
+  const urlId = Number(id)
+  const {app} = state
+  const categoriesHaveLoaded = categoriesHaveLoadedSelector(state)
+
+  return {
+    ...app,
+    categoryNames: (categoriesHaveLoaded ? app.categoryIds : [])
+      .map(categoryId => state.categories.byId[categoryId].name),
+    isLoading: !app.id || app.id !== urlId || !categoriesHaveLoaded,
+    urlId,
+  }
+}
 
 const mapDispatchToProps = {
   handleMount: appDetailsMount,

@@ -3,6 +3,31 @@
   flex-direction: column;
 }
 
+.app-details__categories-container {
+  padding: 0 1rem;
+}
+
+.app-details__categories-title {
+  margin: 0 0 .5rem;
+}
+
+.app-details__category {
+  color: var(--color-white);
+  background: var(--color-secondary);
+  border-radius: 1rem;
+  padding: .5rem;
+}
+
+.app-details__category:not(:last-child) {
+  margin-right: .5rem;
+}
+
+.app-details__category-container {
+  display: flex;
+  overflow: auto;
+  padding: calc(1rem / 3) 0;
+}
+
 .app-details__float-left-container {
   align-items: center;
   display: flex;
