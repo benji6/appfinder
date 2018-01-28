@@ -6,6 +6,7 @@ import {
   Switch,
 } from 'react-router-dom'
 import Header from './Header'
+import AppDetails from '../AppDetails'
 import Browse from '../Browse'
 import Search from '../Search'
 
@@ -17,6 +18,7 @@ class App extends React.PureComponent {
           <Header />
           <Switch>
             <Route path="/" component={Browse} exact />
+            <Route path="/app/:id" component={AppDetails} exact />
             <Route path="/search" component={Search} exact />
             <Route render={() => <Redirect to="/" />} />
           </Switch>

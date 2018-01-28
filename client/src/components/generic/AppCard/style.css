@@ -1,6 +1,6 @@
 .app-card {
   border-radius: var(--cmp-app-card-border-radius);
-  box-shadow: .2rem .2rem .25rem rgba(0, 0, 0, .5);
+  box-shadow: var(--box-shadow-1);
   display: inline-block;
   margin: var(--cmp-app-card-spacing);
   outline: 0;
@@ -25,7 +25,7 @@
 
 .app-card:focus,
 .app-card:hover {
-  box-shadow: .3rem .3rem .5rem rgba(0, 0, 0, .5);
+  box-shadow: var(--box-shadow-2);
 }
 
 .app-card:focus::after,

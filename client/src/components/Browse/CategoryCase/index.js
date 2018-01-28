@@ -23,7 +23,7 @@ class CategoryCase extends React.PureComponent {
     this.handleRightButtonClick = this.handleRightButtonClick.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.handleMount(this.props.category)
   }
 

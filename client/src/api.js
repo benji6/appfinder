@@ -1,3 +1,6 @@
+export const getApp = id => fetch(`http://localhost:3001/app/${id}`)
+  .then(response => response.json())
+
 export const getApps = ({query, category}) => {
   const categoryQueryString = category ? `category=${category}` : ''
 

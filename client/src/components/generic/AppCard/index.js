@@ -1,28 +1,27 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './style.css'
 
 class AppCard extends React.PureComponent {
   render() {
-    const {color, iconUrl, name, url} = this.props
+    const {color, iconUrl, id, name} = this.props
 
     return (
-      <a
+      <Link
         className="app-card"
-        href={url}
-        rel="noopener noreferrer"
+        to={`app/${id}`}
         style={{backgroundColor: color}}
-        target="_blank"
       >
         <div className="app-card__logo-container">
           <img
-            className="app-card__logo"
             alt={`${name} logo`}
+            className="app-card__logo"
             src={`/${iconUrl}`}
           />
         </div>
         <div className="app-card__name">{name}</div>
-      </a>
+      </Link>
     )
   }
 }
@@ -30,8 +29,8 @@ class AppCard extends React.PureComponent {
 AppCard.propTypes = {
   color: PropTypes.string.isRequired,
   iconUrl: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
 }
 
 export default AppCard

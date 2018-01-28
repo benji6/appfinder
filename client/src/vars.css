@@ -6,6 +6,8 @@
   --cmp-app-card-spacing: .5rem;
   --cmp-app-card-width: 9rem;
   --cmp-search-background-color: var(--color-gray-light);
+  --box-shadow-1: .15rem .15rem .15rem rgba(0, 0, 0, .3333);
+  --box-shadow-2: .2rem .2rem .2rem rgba(0, 0, 0, .4);
   --color-gray: #646464;
   --color-gray-light: #d2d2d2;
   --color-highlight: #ffae00;

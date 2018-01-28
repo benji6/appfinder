@@ -11,7 +11,7 @@
 
 .search__container {
   border-radius: var(--border-radius);
-  box-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .4);
+  box-shadow: var(--box-shadow-1);
   display: flex;
   justify-content: center;
   margin: 0 1rem;
@@ -23,7 +23,7 @@
 
 .search__container:hover,
 .search__container--focus {
-  box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, .4);
+  box-shadow: var(--box-shadow-2);
 }
 
 .search__close-button {

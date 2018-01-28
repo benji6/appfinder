@@ -21,7 +21,7 @@ import {getApps} from '../api'
 import {categoryCaseLastUpdatedSelector} from '../reducers/categoryCases'
 import {searchQuerySelector} from '../reducers/search'
 
-export function* fetchApps({payload: query}) {
+function* fetchApps({payload: query}) {
   const previousQuery = yield select(searchQuerySelector)
 
   const trimmedQuery = query.trim()
@@ -43,7 +43,7 @@ export function* fetchApps({payload: query}) {
   }
 }
 
-export function* fetchAppsForCategoryCase({payload: category}) {
+function* fetchAppsForCategoryCase({payload: category}) {
   const lastUpdated = yield select(categoryCaseLastUpdatedSelector, {category})
 
   if (lastUpdated && Date.now() - lastUpdated < 6e5) return
