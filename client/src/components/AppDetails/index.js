@@ -16,6 +16,7 @@ class AppDetails extends React.PureComponent {
     const {
       categoryNames,
       color,
+      description,
       iconUrl,
       isLoading,
       name,
@@ -46,9 +47,7 @@ class AppDetails extends React.PureComponent {
             </a>
           </div>
           <h2>{name}</h2>
-          <div>
-            In a future release we will have loads of information about this app. Stay tuned!
-          </div>
+          <p>{description || 'No description.'}</p>
         </div>
         <div className="app-details__categories-container">
           <h3 className="app-details__categories-title">Categories:</h3>
@@ -68,6 +67,7 @@ class AppDetails extends React.PureComponent {
 AppDetails.propTypes = {
   categoryNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   color: PropTypes.string,
+  description: PropTypes.string,
   handleMount: PropTypes.func.isRequired,
   iconUrl: PropTypes.string,
   id: PropTypes.number,

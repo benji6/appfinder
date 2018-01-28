@@ -1,0 +1,14 @@
+{
+  "name": "scraper",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "repository": "https://bitbucket.org/benji6/appfinder",
+  "private": true,
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "cheerio": "^1.0.0-rc.2"
+  }
+}

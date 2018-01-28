@@ -4,6 +4,7 @@ const query = `
 SELECT
 apps.id,
 apps.color,
+apps.description,
 apps.icon_url AS iconUrl,
 apps.name,
 apps.url,
