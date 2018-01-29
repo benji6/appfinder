@@ -1,12 +1,13 @@
 import React from 'react'
 import CategoryCase from './CategoryCase'
+import Heading from '../generic/Heading'
 import './style.css'
 
 class Browse extends React.PureComponent {
   render() {
     return (
       <div className="browse">
-        <h2>Browse apps</h2>
+        <Heading variation="h2">Browse apps</Heading>
         <CategoryCase category="business" />
         <CategoryCase category="demo" />
         <CategoryCase category="game" />

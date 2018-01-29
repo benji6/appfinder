@@ -9,6 +9,7 @@ import {
   searchIsLoadingSelector,
   searchQuerySelector,
 } from '../../../reducers/search'
+import Heading from '../../generic/Heading'
 import './style.css'
 
 class SearchResults extends React.PureComponent {
@@ -23,7 +24,7 @@ class SearchResults extends React.PureComponent {
 
     return (
       <div className="search-results">
-        <h2>Search results</h2>
+        <Heading variation="h2">Search results</Heading>
         {apps.length ? (
           apps.map(app => <AppCard key={app.id} {...app} />)
         ) : isLoading ? (

@@ -46,7 +46,8 @@ class AppDetails extends React.PureComponent {
               Launch
             </a>
           </div>
-          <h2>{name}</h2>
+          <h2 className="app-details__heading">{name}</h2>
+          <h3 className="app-details__url">{url}</h3>
           <p>{description || 'No description.'}</p>
         </div>
         <div className="app-details__categories-container">
