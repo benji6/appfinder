@@ -27,12 +27,12 @@ GROUP BY id
 ORDER BY RAND()
 `
 
-const appsQueryWithQuery = query => `
+const appsSearchQuery = ({appNameQuery, categoryNameQuery, orderBy}) => `
 ${selectAllQuery}
-WHERE apps.name LIKE ${query}
-OR categories.name LIKE ${query}
+WHERE apps.name LIKE ${appNameQuery}
+OR categories.name LIKE ${categoryNameQuery}
 GROUP BY id
-ORDER BY RAND()
+ORDER BY ${orderBy}
 `
 
 const escapeWildcards = str => str.replace(/%/g, '\\%').replace(/_/g, '\\_')
@@ -43,8 +43,11 @@ exports.getApps = ({query, category}) => {
     return runQuery(mysql.format(appsQueryWithCategory, [category]))
   }
   if (query) {
-    const escapedQuery = mysql.escape(`%${insertWildcards(escapeWildcards(query))}%`)
-    return runQuery(appsQueryWithQuery(escapedQuery))
+    const isTinyQuery = query.length <= 3
+    const appNameQuery = mysql.escape(`${isTinyQuery ? '' : '%'}${insertWildcards(escapeWildcards(query))}%`)
+    const categoryNameQuery = mysql.escape(`${insertWildcards(escapeWildcards(query))}%`)
+    const orderBy = isTinyQuery ? 'apps.name' : 'RAND()'
+    return runQuery(appsSearchQuery({appNameQuery, categoryNameQuery, orderBy}))
   }
   return runQuery(appsQuery)
 }
