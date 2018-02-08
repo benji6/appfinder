@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Spinner from '../generic/Spinner'
 import {appDetailsMount} from '../../actions'
 import {categoriesHaveLoadedSelector} from '../../reducers/categories'
+import Reviews from './Reviews'
 import './style.css'
 
 class AppDetails extends React.PureComponent {
@@ -51,7 +52,7 @@ class AppDetails extends React.PureComponent {
           <p>{description || 'No description.'}</p>
         </div>
         <div className="app-details__categories-container">
-          <h3 className="app-details__categories-title">Categories:</h3>
+          <h3 className="app-details__categories-title">Categories</h3>
           <div className="app-details__category-container">
             {categoryNames.map(categoryName => (
               <div className="app-details__category" key={categoryName}>
@@ -60,6 +61,7 @@ class AppDetails extends React.PureComponent {
             ))}
           </div>
         </div>
+        <Reviews />
       </div>
     )
   }
