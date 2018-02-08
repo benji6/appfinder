@@ -3,7 +3,7 @@ CREATE DATABASE appfinder;
 USE appfinder;
 
 CREATE TABLE apps (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   color VARCHAR(31) NOT NULL,
   date_created TIMESTAMP NOT NULL DEFAULT NOW(),
   description VARCHAR(255),
@@ -15,15 +15,15 @@ CREATE TABLE apps (
 );
 
 CREATE TABLE categories (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(31) NOT NULL,
 
   PRIMARY KEY (id)
 );
 
 CREATE TABLE app_categories (
-  app_id INT NOT NULL,
-  category_id INT NOT NULL,
+  app_id INT UNSIGNED NOT NULL,
+  category_id INT UNSIGNED NOT NULL,
 
   PRIMARY KEY (app_id, category_id),
   FOREIGN KEY (app_id) REFERENCES apps (id),
