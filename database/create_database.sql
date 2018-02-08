@@ -10,21 +10,33 @@ CREATE TABLE apps (
   icon_url VARCHAR(255) NOT NULL,
   name VARCHAR(63) NOT NULL,
   url VARCHAR(255) NOT NULL,
-
   PRIMARY KEY (id)
 );
 
 CREATE TABLE categories (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(31) NOT NULL,
-
   PRIMARY KEY (id)
+);
+
+CREATE TABLE ratings (
+  id TINYINT UNSIGNED NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE app_ratings (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  app_id INT UNSIGNED NOT NULL,
+  rating TINYINT UNSIGNED NOT NULL,
+  review VARCHAR(255),
+  PRIMARY KEY (id),
+  FOREIGN KEY (app_id) REFERENCES apps (id),
+  FOREIGN KEY (rating) REFERENCES ratings (id)
 );
 
 CREATE TABLE app_categories (
   app_id INT UNSIGNED NOT NULL,
   category_id INT UNSIGNED NOT NULL,
-
   PRIMARY KEY (app_id, category_id),
   FOREIGN KEY (app_id) REFERENCES apps (id),
   FOREIGN KEY (category_id) REFERENCES categories (id)
