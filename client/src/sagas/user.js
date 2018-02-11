@@ -14,7 +14,7 @@ window.handleGapiLoad = () => window.gapi.load('auth2', () => {
   const auth2 = window.gapi.auth2.init()
   if (auth2.isSignedIn.get()) {
     const profile = auth2.currentUser.get().getBasicProfile()
-    emitter({isSignedIn: true, data: profile.getImageUrl()})
+    emitter({data: profile.getImageUrl(), isSignedIn: true})
   } else {
     emitter({isSignedIn: false})
   }
