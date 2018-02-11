@@ -24,14 +24,27 @@ CREATE TABLE ratings (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE app_ratings (
+CREATE TABLE users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL,
+  family_name VARCHAR(255) NOT NULL,
+  given_name VARCHAR(255) NOT NULL,
+  google_id VARCHAR(255) NOT NULL,
+  image_url VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE reviews (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   app_id INT UNSIGNED NOT NULL,
   rating TINYINT UNSIGNED NOT NULL,
   review VARCHAR(255),
+  user_id INT UNSIGNED NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (app_id) REFERENCES apps (id),
-  FOREIGN KEY (rating) REFERENCES ratings (id)
+  FOREIGN KEY (rating) REFERENCES ratings (id),
+  FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE app_categories (
