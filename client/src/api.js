@@ -1,4 +1,6 @@
-export const getApp = id => fetch(`http://localhost:3001/app/${id}`)
+const API_URI = 'http://localhost:3001'
+
+export const getApp = id => fetch(`${API_URI}/app/${id}`)
   .then(response => response.json())
 
 export const getApps = ({query, category}) => {
@@ -13,9 +15,15 @@ export const getApps = ({query, category}) => {
     ? `?${queryStrings.join('&')}`
     : ''
 
-  return fetch(`http://localhost:3001/apps${queryString}`)
+  return fetch(`${API_URI}/apps${queryString}`)
     .then(response => response.json())
 }
 
-export const getCategories = () => fetch('http://localhost:3001/categories')
+export const getCategories = () => fetch(`${API_URI}/categories`)
+  .then(response => response.json())
+
+export const postGoogleSignIn = body => fetch(`${API_URI}/google-sign-in`, {
+  body,
+  method: 'POST',
+})
   .then(response => response.json())

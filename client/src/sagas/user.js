@@ -7,14 +7,18 @@ import {
   userSignOutRequest,
   userSignOutSuccess,
 } from '../actions'
+import {postGoogleSignIn} from '../api'
 
 let emitter = null
 
 window.handleGapiLoad = () => window.gapi.load('auth2', () => {
   const auth2 = window.gapi.auth2.init()
   if (auth2.isSignedIn.get()) {
-    const profile = auth2.currentUser.get().getBasicProfile()
-    emitter({data: profile.getImageUrl(), isSignedIn: true})
+    const googleUser = auth2.currentUser.get()
+    const idToken = googleUser.getAuthResponse().id_token
+    postGoogleSignIn(idToken)
+      .then(user => emitter({isSignedIn: true, user}))
+      .catch(() => emitter({isSignedIn: false}))
   } else {
     emitter({isSignedIn: false})
   }
@@ -26,8 +30,9 @@ const userChannelFactory = () => eventChannel(e => {
 })
 
 function* handleUserSignInSuccess({payload: googleUser}) {
-  const profile = googleUser.getBasicProfile()
-  yield put(userGetSuccess(profile.getImageUrl()))
+  const idToken = googleUser.getAuthResponse().id_token
+  const user = yield call(postGoogleSignIn, idToken)
+  yield put(userGetSuccess(user))
 }
 
 function* userSignOut() {
@@ -40,8 +45,8 @@ function* handleGapiLoad() {
   const chan = yield call(userChannelFactory)
   try {
     while (true) {
-      const {isSignedIn, data} = yield take(chan)
-      if (isSignedIn) yield put(userGetSuccess(data))
+      const {isSignedIn, user} = yield take(chan)
+      if (isSignedIn) yield put(userGetSuccess(user))
       else yield put(userNotSignedIn())
     }
   } finally {
