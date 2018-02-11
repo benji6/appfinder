@@ -9,10 +9,10 @@ const {
 
 module.exports = (...args) => new Promise((resolve, reject) => {
   const connection = mysql.createConnection({
-    host: MYSQL_HOST,
-    user: MYSQL_USER,
-    password: MYSQL_PASSWORD,
     database: MYSQL_DATABASE,
+    host: MYSQL_HOST,
+    password: MYSQL_PASSWORD,
+    user: MYSQL_USER,
   })
 
   connection.connect()

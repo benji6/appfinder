@@ -1,42 +1,24 @@
+require('isomorphic-fetch')
 const cors = require('cors')
 const express = require('express')
-const {getApp} = require('./database/app')
-const {getApps} = require('./database/apps')
-const {getCategories} = require('./database/categories')
-const {SEARCH_QUERY_MAX_LENGTH} = require('./constants')
+const {get: appGet} = require('./routeHandlers/app')
+const {get: appsGet} = require('./routeHandlers/apps')
+const {get: categoriesGet} = require('./routeHandlers/categories')
+const {post: googleSignInPost} = require('./routeHandlers/googleSignIn')
+const bodyParser = require('body-parser')
+const pino = require('./pino')
 
 const {PORT} = process.env
+
+const textBodyParser = bodyParser.text()
 
 const app = express()
 
 app.use(cors())
 
-app.get('/app/:id', (req, res) => {
-  getApp(req.params.id)
-    .then(data => res.send(data))
-    .catch(err => res.status(500).send(err))
-})
+app.get('/app/:id', appGet)
+app.get('/apps', appsGet)
+app.get('/categories', categoriesGet)
+app.post('/google-sign-in', textBodyParser, googleSignInPost)
 
-app.get('/apps', (req, res) => {
-  const {query} = req.query
-
-  if (query && query.length > SEARCH_QUERY_MAX_LENGTH) {
-    res.status(400).send(`query param exceeds maxLength of ${SEARCH_QUERY_MAX_LENGTH}`)
-    return
-  }
-
-  getApps({
-    query: query || '',
-    category: req.query.category,
-  })
-    .then(data => res.send(data))
-    .catch(err => res.status(500).send(err))
-})
-
-app.get('/categories', (req, res) => {
-  getCategories()
-    .then(data => res.send(data))
-    .catch(err => res.status(500).send(err))
-})
-
-app.listen(PORT, () => process.stdout.write(`api listening on port ${PORT}\n`))
+app.listen(PORT, () => pino.info(`API listening on port ${PORT}\n`))
