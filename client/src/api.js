@@ -22,6 +22,9 @@ export const getApps = ({query, category}) => {
 export const getCategories = () => fetch(`${API_URI}/categories`)
   .then(response => response.json())
 
+export const getReviews = appId => fetch(`${API_URI}/app/${appId}/reviews`)
+  .then(response => response.json())
+
 export const postGoogleSignIn = body => fetch(`${API_URI}/google-sign-in`, {
   body,
   method: 'POST',

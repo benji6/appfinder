@@ -19,6 +19,7 @@ class AppDetails extends React.PureComponent {
       color,
       description,
       iconUrl,
+      id,
       isLoading,
       name,
       rating,
@@ -64,7 +65,7 @@ class AppDetails extends React.PureComponent {
             ))}
           </div>
         </div>
-        <Reviews />
+        <Reviews id={id} />
       </div>
     )
   }
