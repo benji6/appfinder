@@ -7,11 +7,13 @@ apps.id,
 apps.color,
 apps.icon_url AS iconUrl,
 apps.name,
+AVG(reviews.rating) AS rating,
 apps.url,
 GROUP_CONCAT(categories.id) AS category_ids
 FROM apps
 LEFT JOIN app_categories ON apps.id = app_categories.app_id
 LEFT JOIN categories ON app_categories.category_id = categories.id
+LEFT JOIN reviews ON apps.id = reviews.app_id
 `
 
 const appsQuery = `

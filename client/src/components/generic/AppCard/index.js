@@ -5,7 +5,7 @@ import './style.css'
 
 class AppCard extends React.PureComponent {
   render() {
-    const {color, iconUrl, id, name} = this.props
+    const {color, iconUrl, id, name, rating} = this.props
 
     return (
       <Link
@@ -20,7 +20,7 @@ class AppCard extends React.PureComponent {
             src={`/${iconUrl}`}
           />
         </div>
-        <div className="app-card__name">{name}</div>
+        <div className="app-card__name">{`${name}${rating ? ` ${rating}` : ''}`}</div>
       </Link>
     )
   }
@@ -31,6 +31,7 @@ AppCard.propTypes = {
   iconUrl: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  rating: PropTypes.number,
 }
 
 export default AppCard
