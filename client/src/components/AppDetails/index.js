@@ -21,6 +21,7 @@ class AppDetails extends React.PureComponent {
       iconUrl,
       isLoading,
       name,
+      rating,
       url,
     } = this.props
 
@@ -52,6 +53,8 @@ class AppDetails extends React.PureComponent {
           <p>{description || 'No description.'}</p>
         </div>
         <div className="app-details__categories-container">
+          <h3 className="app-details__categories-title">Rating</h3>
+          <p>{rating}</p>
           <h3 className="app-details__categories-title">Categories</h3>
           <div className="app-details__category-container">
             {categoryNames.map(categoryName => (
@@ -76,6 +79,7 @@ AppDetails.propTypes = {
   id: PropTypes.number,
   isLoading: PropTypes.bool.isRequired,
   name: PropTypes.string,
+  rating: PropTypes.number,
   url: PropTypes.string,
   urlId: PropTypes.number.isRequired,
 }
