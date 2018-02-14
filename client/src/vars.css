@@ -2,7 +2,7 @@
   --cmp-app-card-border-radius: .5rem;
   --cmp-app-card-border-width: .2rem;
   --cmp-app-card-logo-size: 4.25rem;
-  --cmp-app-card-name-font-size: .9rem;
+  --cmp-app-card-font-size: .9rem;
   --cmp-app-card-spacing: .5rem;
   --cmp-app-card-width: 8.5rem;
   --cmp-search-background-color: var(--color-gray-light);
@@ -25,7 +25,7 @@
 @media (min-width: 72rem) {
   :root {
     --cmp-app-card-logo-size: 6rem;
-    --cmp-app-card-name-font-size: 1rem;
+    --cmp-app-card-font-size: 1rem;
     --cmp-app-card-width: 10rem;
     --cmp-search-background-color: var(--color-white);
     --global-body-background-color: var(--color-gray-light);

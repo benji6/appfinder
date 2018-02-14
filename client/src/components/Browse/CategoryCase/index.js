@@ -5,14 +5,15 @@ import {categoryCaseMount} from '../../../actions'
 import {categoryCaseAppsSelector} from '../../../reducers/categoryCases'
 import AppCard from '../../generic/AppCard'
 import Spinner from '../../generic/Spinner'
+import Icon from '../../generic/Icon'
+import {computedStyle} from '../../../utils'
 import './style.css'
 
 const capitalizeFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('')
 const remPropertyToPx = rem => parseFloat(rem, 10) * 16
-const styles = getComputedStyle(document.documentElement)
 const scrollAmount = () => {
-  const spacing = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-spacing'))
-  const width = remPropertyToPx(styles.getPropertyValue('--cmp-app-card-width'))
+  const spacing = remPropertyToPx(computedStyle.getPropertyValue('--cmp-app-card-spacing'))
+  const width = remPropertyToPx(computedStyle.getPropertyValue('--cmp-app-card-width'))
   return spacing * 2 + width
 }
 
@@ -48,18 +49,14 @@ class CategoryCase extends React.PureComponent {
               className="category-case__scroll-button"
               onClick={this.handleLeftButtonClick}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="17 22 5 12 17 2" />
-              </svg>
+              <Icon name="arrow-left" />
             </button>
             <button
               aria-label="scroll right"
               className="category-case__scroll-button"
               onClick={this.handleRightButtonClick}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="5 22 17 12 5 2" />
-              </svg>
+              <Icon name="arrow-right" />
             </button>
           </div>
         </div>

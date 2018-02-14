@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
+import Icon from '../Icon'
+import {computedStyle} from '../../../utils'
 import './style.css'
 
 class AppCard extends React.PureComponent {
@@ -13,6 +15,7 @@ class AppCard extends React.PureComponent {
         to={`app/${id}`}
         style={{backgroundColor: color}}
       >
+        <div className="app-card__header">{name}</div>
         <div className="app-card__logo-container">
           <img
             alt={`${name} logo`}
@@ -20,7 +23,13 @@ class AppCard extends React.PureComponent {
             src={`/${iconUrl}`}
           />
         </div>
-        <div className="app-card__name">{`${name}${rating ? ` ${rating}` : ''}`}</div>
+        <div className="app-card__footer">
+          <Fragment>
+            {rating ? rating.toFixed(1) : '0.0'}
+            &nbsp;
+            <Icon name="star" size={computedStyle.getPropertyValue('--cmp-app-card-font-size')} />
+          </Fragment>
+        </div>
       </Link>
     )
   }
