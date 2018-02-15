@@ -6,9 +6,9 @@
   outline: 0;
   position: relative;
   text-decoration: none;
-  transition-duration: .1s;
+  transition-duration: var(--transition-duration);
   transition-property: box-shadow;
-  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-timing-function: var(--transition-timing-function);
   width: var(--cmp-app-card-width);
 }
 
@@ -21,6 +21,7 @@
   bottom: 0;
   right: 0;
   border: var(--cmp-app-card-border-width) solid var(--color-theme);
+  transition: var(--transition-duration) border-color var(--transition-timing-function);
 }
 
 .app-card:focus,
@@ -54,6 +55,7 @@
   font-size: var(--cmp-app-card-font-size);
   justify-content: center;
   padding: .5rem .75rem .667rem;
+  transition: var(--transition-duration) background-color var(--transition-timing-function);
 }
 
 .app-card:focus .app-card__footer,
@@ -72,6 +74,7 @@
   padding: .5rem .75rem .667rem;
   text-align: center;
   text-overflow: ellipsis;
+  transition: var(--transition-duration) background-color var(--transition-timing-function);
   white-space: nowrap;
 }
 
