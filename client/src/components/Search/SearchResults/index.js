@@ -26,7 +26,16 @@ class SearchResults extends React.PureComponent {
       <div className="search-results">
         <Heading variation="h2">Search results</Heading>
         {apps.length ? (
-          apps.map(app => <AppCard key={app.id} {...app} />)
+          apps.map(({color, iconUrl, id, name, rating}) => (
+            <AppCard
+              key={id}
+              color={color}
+              iconUrl={iconUrl}
+              id={id}
+              name={name}
+              rating={rating}
+            />
+          ))
         ) : isLoading ? (
           <Spinner />
         ) : (

@@ -1,6 +1,8 @@
 .app-details {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: var(--content-max-width);
 }
 
 .app-details__categories-container {

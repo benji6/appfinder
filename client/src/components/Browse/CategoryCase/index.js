@@ -62,7 +62,16 @@ class CategoryCase extends React.PureComponent {
         </div>
         <div className="category-case__item-container" ref={ref => { this.itemContainer = ref }}>
           {apps
-            ? apps.map(app => <AppCard key={app.id} {...app} />)
+            ? apps.map(({color, iconUrl, id, name, rating}) => (
+              <AppCard
+                key={id}
+                color={color}
+                iconUrl={iconUrl}
+                id={id}
+                name={name}
+                rating={rating}
+              />
+            ))
             : <Spinner />}
           <div className="category-case__end" />
         </div>

@@ -7,14 +7,24 @@ import './style.css'
 
 class AppCard extends React.PureComponent {
   render() {
-    const {color, iconUrl, id, name, rating} = this.props
+    const {color, iconUrl, id, name, rating, url} = this.props
+
+    const Component = url ? 'a' : Link
+
+    const componentProps = {
+      className: 'app-card',
+      style: {backgroundColor: color},
+      ...url ? {
+        href: url,
+        rel: 'noopener noreferrer',
+        target: '_blank',
+      } : {
+        to: `app/${id}`,
+      },
+    }
 
     return (
-      <Link
-        className="app-card"
-        to={`app/${id}`}
-        style={{backgroundColor: color}}
-      >
+      <Component {...componentProps}>
         <div className="app-card__header">{name}</div>
         <div className="app-card__logo-container">
           <img
@@ -25,12 +35,12 @@ class AppCard extends React.PureComponent {
         </div>
         <div className="app-card__footer">
           <Fragment>
-            {rating ? rating.toFixed(1) : '0.0'}
+            {(rating || 0).toFixed(1)}
             &nbsp;
             <Icon name="star" size={computedStyle.getPropertyValue('--cmp-app-card-font-size')} />
           </Fragment>
         </div>
-      </Link>
+      </Component>
     )
   }
 }
@@ -38,9 +48,10 @@ class AppCard extends React.PureComponent {
 AppCard.propTypes = {
   color: PropTypes.string.isRequired,
   iconUrl: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   name: PropTypes.string.isRequired,
   rating: PropTypes.number,
+  url: PropTypes.string,
 }
 
 export default AppCard

@@ -14,14 +14,14 @@
   --color-theme: #242424;
   --color-white: #f6f6f6;
   --color-white-pure: #fff;
-  --content-max-width: 72rem;
+  --content-max-width: 70rem;
   --global-body-background-color: var(--color-white);
   --spacing-x1: .125rem;
   --spacing-x4: calc(var(--spacing-x1) * 4);
   --spacing-x8: calc(var(--spacing-x1) * 8);
 }
 
-@media (min-width: 72rem) {
+@media (min-width: 70rem) {
   :root {
     --cmp-app-card-logo-size: 6rem;
     --cmp-app-card-font-size: 1rem;

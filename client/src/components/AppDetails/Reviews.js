@@ -40,8 +40,8 @@ class AppDetails extends React.PureComponent {
           <Fragment>
             <img alt="profile" src={userImageUrl} height="100" width="100" />
             <button onClick={handleSignOut}>Sign Out</button>
-            {reviews.map(({review, rating}) => (
-              <div>{rating} {review}</div>
+            {reviews.map(({id, review, rating}) => (
+              <div key={id}>{rating} {review}</div>
             ))}
           </Fragment>
         ) : (
