@@ -1,20 +1,17 @@
 .header {
-  align-items: center;
   background-color: var(--color-theme);
   box-shadow: 0 .175rem .2rem rgba(0, 0, 0, .5);
-  display: flex;
-  margin: 0 auto;
-  max-width: var(--content-max-width);
   padding: var(--spacing-x8) 0;
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
-@media (min-width: 72rem) {
-  .header {
-    padding: var(--spacing-x8) 0;
-  }
+.header__container {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  max-width: var(--content-max-width);
 }
 
 .header__link {
