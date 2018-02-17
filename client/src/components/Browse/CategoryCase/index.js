@@ -12,7 +12,7 @@ import './style.css'
 const capitalizeFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('')
 const remPropertyToPx = rem => parseFloat(rem, 10) * 16
 const scrollAmount = () => {
-  const spacing = remPropertyToPx(computedStyle.getPropertyValue('--cmp-app-card-spacing'))
+  const spacing = remPropertyToPx(computedStyle.getPropertyValue('--app-card-spacing'))
   const width = remPropertyToPx(computedStyle.getPropertyValue('--cmp-app-card-width'))
   return spacing * 2 + width
 }

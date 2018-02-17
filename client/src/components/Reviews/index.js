@@ -10,6 +10,7 @@ import {
   userImageUrlSelector,
   userIsLoadingSelector,
   userIsSignedInSelector,
+  userNameSelector,
 } from '../../reducers/user'
 import Spinner from '../generic/Spinner'
 import SignInButton from '../generic/SignInButton'
@@ -27,6 +28,7 @@ class AppDetails extends React.PureComponent {
       isSignedIn,
       reviews,
       userImageUrl,
+      userName,
     } = this.props
 
     if (isLoading) {
@@ -34,11 +36,18 @@ class AppDetails extends React.PureComponent {
     }
 
     return (
-      <div className="app-details__reviews">
-        <h3>Reviews</h3>
+      <div className="reviews">
+        <hr className="reviews__hr" />
         {isSignedIn ? (
           <Fragment>
-            <img alt="profile" src={userImageUrl} height="100" width="100" />
+            <img
+              alt="profile"
+              className="reviews__user-avatar"
+              height="64"
+              src={userImageUrl}
+              width="64"
+            />
+            <div className="reviews_user-name">{userName}</div>
             <button onClick={handleSignOut}>Sign Out</button>
             {reviews.map(({id, review, rating}) => (
               <div key={id}>{rating} {review}</div>
@@ -73,6 +82,7 @@ const mapStateToProps = state => ({
   isSignedIn: userIsSignedInSelector(state),
   reviews: reviewsSelector(state),
   userImageUrl: userImageUrlSelector(state),
+  userName: userNameSelector(state),
 })
 
 const mapDispatchToProps = {

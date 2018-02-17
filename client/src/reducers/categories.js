@@ -7,7 +7,6 @@ const initialState = {
   lastUpdated: null,
 }
 
-export const categoriesHaveLoadedSelector = state => Boolean(state.categories.lastUpdated)
 export const categoriesLastUpdatedSelector = state => state.categories.lastUpdated
 
 export default handleActions({

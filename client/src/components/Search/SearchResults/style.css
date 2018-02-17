@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.search-results > .app-card {
+  margin: var(--app-card-spacing);
+}
+
 .search-results__no-results {
   margin: 2rem;
 }

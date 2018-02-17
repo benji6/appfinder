@@ -22,8 +22,9 @@
   display: none;
 }
 
-.category-case__item-container > * {
+.category-case__item-container > .app-card {
   flex-shrink: 0;
+  margin: var(--app-card-spacing);
 }
 
 .category-case__scroll-button {

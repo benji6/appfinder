@@ -2,7 +2,6 @@
   border-radius: var(--cmp-app-card-border-radius);
   box-shadow: var(--box-shadow-1);
   display: inline-block;
-  margin: var(--cmp-app-card-spacing);
   outline: 0;
   position: relative;
   text-decoration: none;

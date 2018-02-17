@@ -14,6 +14,7 @@ const initialState = {
 export const userImageUrlSelector = state => state.user.imageUrl
 export const userIsLoadingSelector = state => state.user.isLoading
 export const userIsSignedInSelector = state => state.user.isSignedIn
+export const userNameSelector = state => state.user.name
 
 export default handleActions({
   [userGetSuccess]: (state, {payload}) => ({...payload, isLoading: false, isSignedIn: true}),
