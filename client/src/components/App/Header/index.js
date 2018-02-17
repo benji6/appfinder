@@ -10,7 +10,7 @@ class Header extends React.Component {
           <NavLink activeClassName="header__link--active" className="header__link" exact to="/">
             Browse
           </NavLink>
-          <h1 className="header__title">AppFinder</h1>
+          <h1 className="header__title">Appfinder</h1>
           <NavLink activeClassName="header__link--active" className="header__link" to="/search">
             Search
           </NavLink>
