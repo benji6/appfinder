@@ -57,8 +57,8 @@ class ReviewForm extends React.PureComponent {
 ReviewForm.propTypes = {
   handleSignOut: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
-  userImageUrl: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
+  userImageUrl: PropTypes.string,
+  userName: PropTypes.string,
 }
 
 const mapStateToProps = state => ({
