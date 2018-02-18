@@ -3,6 +3,7 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: var(--content-max-width);
+  padding-bottom: 1rem;
 }
 
 .app-details__app-card-container {

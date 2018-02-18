@@ -35,7 +35,7 @@ class Rating extends React.PureComponent {
             .map(([stars, amount]) => (
               <Fragment key={stars}>
                 <div className="rating__breakdown-stars">
-                  {stars}&nbsp;<Icon name="star" size="1rem" />
+                  {stars}&nbsp;<Icon name="star" />
                 </div>
                 <RatingBar amount={amount} />
                 <span>{Math.round(amount * 100)}%</span>

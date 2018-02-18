@@ -15,20 +15,11 @@
   --color-theme: #242424;
   --color-white: #f6f6f6;
   --color-white-pure: #fff;
-  --content-max-width: 70rem;
+  --content-max-width: 54rem;
   --global-body-background-color: var(--color-white);
   --spacing-x1: .125rem;
   --spacing-x4: calc(var(--spacing-x1) * 4);
   --spacing-x8: calc(var(--spacing-x1) * 8);
   --transition-duration: .075s;
   --transition-timing-function: ease-in-out;
-}
-
-@media (min-width: 70rem) {
-  :root {
-    --cmp-app-card-logo-size: 5rem;
-    --cmp-app-card-font-size: .95rem;
-    --cmp-app-card-width: 9.5rem;
-    --spacing-x1: .175rem;
-  }
 }

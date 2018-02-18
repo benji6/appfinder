@@ -53,15 +53,15 @@ class AppDetails extends React.PureComponent {
           </div>
           <p className="app-details__description">{description || 'No description available.'}</p>
         </div>
-        {rating ? (
+        {rating == null ? (
+          <div>No reviews yet - you will be able to add one soon</div>
+        ) : (
           <Fragment>
             <hr className="app-details__hr" />
             <Rating />
             <hr className="app-details__hr" />
             <Reviews id={id} />
           </Fragment>
-        ) : (
-          <div>No reviews yet - you will be able to add one soon</div>
         )}
       </div>
     )

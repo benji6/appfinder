@@ -39,9 +39,13 @@ class Icon extends React.PureComponent {
 
     return React.createElement(
       nameToComponentMap[name],
-      size && {style: {height: size, width: size}},
+      {style: {height: size, width: size}},
     )
   }
+}
+
+Icon.defaultProps = {
+  size: '1rem',
 }
 
 Icon.propTypes = {
