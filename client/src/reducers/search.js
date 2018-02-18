@@ -38,7 +38,11 @@ export default handleActions({
       allIds.push(id)
       byId[id] = app
     }
-    return {...state, isLoading: false, results: {byId, allIds}}
+    return {...state, isLoading: false, results: {allIds, byId}}
   },
-  [searchResultsClear]: state => ({...state, results: initialState.results}),
+  [searchResultsClear]: state => ({
+    ...state,
+    query: initialState.query,
+    results: initialState.results,
+  }),
 }, initialState)
