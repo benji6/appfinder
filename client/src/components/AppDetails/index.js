@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Spinner from '../generic/Spinner'
 import {appDetailsMount} from '../../actions'
 import Rating from '../Rating'
+import ReviewForm from '../ReviewForm'
 import Reviews from '../Reviews'
 import AppCard from '../generic/AppCard'
 import './style.css'
@@ -59,6 +60,8 @@ class AppDetails extends React.PureComponent {
           <Fragment>
             <hr className="app-details__hr" />
             <Rating />
+            <hr className="app-details__hr" />
+            <ReviewForm />
             <hr className="app-details__hr" />
             <Reviews id={id} />
           </Fragment>

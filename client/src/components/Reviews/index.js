@@ -3,7 +3,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {
   reviewsGetRequest,
-  userSignOutRequest,
 } from '../../actions'
 import {reviewsSelector} from '../../reducers/reviews'
 import Review from './Review'
@@ -62,7 +61,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   handleMount: reviewsGetRequest,
-  handleSignOut: userSignOutRequest,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppDetails)
