@@ -6,7 +6,24 @@ const initialState = {
   byId: {},
 }
 
-export const reviewsSelector = state => state.reviews.allIds.map(id => state.reviews.byId[id])
+export const ratingsBreakdownSelector = ({reviews: {allIds, byId}}) => {
+  const totalRatings = allIds.length
+
+  const breakdownByCount = allIds
+    .reduce((breakdown, id) => {
+      const {rating} = byId[id]
+      return {
+        ...breakdown,
+        [rating]: breakdown[id] + 1,
+      }
+    }, {1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
+
+  return Object.entries(breakdownByCount)
+    .reduce((acc, [key, val]) => ({...acc, [key]: val / totalRatings}), {})
+}
+
+export const reviewsSelector = ({reviews: {allIds, byId}}) => allIds.map(id => byId[id])
+export const totalRatingsSelector = state => state.reviews.allIds.length
 
 export default handleActions({
   [reviewsGetSuccess]: (state, {payload}) => {

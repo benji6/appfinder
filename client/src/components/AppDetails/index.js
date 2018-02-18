@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import Spinner from '../generic/Spinner'
 import {appDetailsMount} from '../../actions'
+import Rating from '../Rating'
 import Reviews from '../Reviews'
 import AppCard from '../generic/AppCard'
 import './style.css'
@@ -52,7 +53,16 @@ class AppDetails extends React.PureComponent {
           </div>
           <p className="app-details__description">{description || 'No description available.'}</p>
         </div>
-        <Reviews id={id} />
+        {rating ? (
+          <Fragment>
+            <hr className="app-details__hr" />
+            <Rating />
+            <hr className="app-details__hr" />
+            <Reviews id={id} />
+          </Fragment>
+        ) : (
+          <div>No reviews yet - you will be able to add one soon</div>
+        )}
       </div>
     )
   }

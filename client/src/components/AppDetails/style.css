@@ -10,6 +10,7 @@
 }
 
 .app-details__description {
+  margin-bottom: .5rem;
   text-align: center;
 }
 
@@ -19,8 +20,13 @@
   text-align: center;
 }
 
+.app-details__hr {
+  border: 1px solid var(--color-gray);
+  margin: 1rem;
+}
+
 .app-details__info-container {
-  padding: 1rem;
+  padding: 1rem 1rem 0;
 }
 
 .app-details__url {

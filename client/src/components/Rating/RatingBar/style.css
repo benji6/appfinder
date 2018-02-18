@@ -1,0 +1,10 @@
+.rating-bar {
+  background: var(--color-highlight);
+  display: inline-block;
+  height: 1rem;
+  width: 8rem;
+  margin: 0 1rem;
+  position: relative;
+  transform: scaleX(.5);
+  transform-origin: 0;
+}

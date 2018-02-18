@@ -37,7 +37,6 @@ class AppDetails extends React.PureComponent {
 
     return (
       <div className="reviews">
-        <hr className="reviews__hr" />
         {isSignedIn ? (
           <Fragment>
             <img

@@ -1,0 +1,38 @@
+.rating {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 1rem;
+}
+
+.rating__breakdown {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: end;
+  padding: 0 1rem;
+}
+
+.rating__breakdown-stars {
+  display: flex;
+  align-items: center;
+}
+
+.rating__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.rating__heading {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.rating__subheading {
+  margin: 0 0 1rem;
+}
