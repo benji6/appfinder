@@ -31,14 +31,16 @@ class AppDetails extends React.PureComponent {
       <div className="app-details">
         <div className="app-details__info-container">
           <h2 className="app-details__heading">{name}</h2>
-          <a
-            className="app-details__url"
-            href={url}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {url}
-          </a>
+          <div className="app-details__url-container">
+            <a
+              className="app-details__url"
+              href={url}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {url}
+            </a>
+          </div>
           <div className="app-details__app-card-container">
             <AppCard
               color={color}
