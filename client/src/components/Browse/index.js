@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryCase from './CategoryCase'
+import CategoryCase from '../CategoryCase'
 import Heading from '../generic/Heading'
 import './style.css'
 
