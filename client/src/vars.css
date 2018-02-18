@@ -22,4 +22,11 @@
   --spacing-x8: calc(var(--spacing-x1) * 8);
   --transition-duration: .075s;
   --transition-timing-function: ease-in-out;
+  --wide-screen: 0;
+}
+
+@media (min-width: 54rem) {
+  :root {
+    --wide-screen: 1;
+  }
 }

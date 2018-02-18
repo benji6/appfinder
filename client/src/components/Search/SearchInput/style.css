@@ -1,7 +1,12 @@
 .search {
   --border-radius: .25rem;
   background-color: var(--color-gray-light);
-  border-bottom: 2px solid var(--color-theme);
+  border: 2px solid var(--color-theme);
+  border-bottom-left-radius: calc(.4rem * var(--wide-screen));
+  border-bottom-right-radius: calc(.4rem * var(--wide-screen));
+  border-left-width: calc(2px * var(--wide-screen));
+  border-right-width: calc(2px * var(--wide-screen));
+  border-top: 0;
   display: flex;
   justify-content: center;
   margin: 0 auto;
