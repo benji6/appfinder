@@ -5,6 +5,7 @@
   width: 8rem;
   margin: 0 1rem;
   position: relative;
-  transform: scaleX(.5);
+  transition: .8s transform var(--transition-timing-function);
+  transform: scaleX(0);
   transform-origin: 0;
 }

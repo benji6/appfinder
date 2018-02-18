@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  reviewsGetRequest,
-} from '../../actions'
+import {reviewsGetRequest} from '../../actions'
 import {reviewsSelector} from '../../reducers/reviews'
 import Review from './Review'
 import './style.css'

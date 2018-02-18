@@ -1,6 +1,6 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
 import {
-  reviewsGetRequest,
+  appDetailsMount,
   reviewsGetSuccess,
 } from '../actions'
 import {getReviews} from '../api'
@@ -15,5 +15,5 @@ function* fetchReviews({payload}) {
 }
 
 export default function* watchReviewsGetRequest() {
-  yield takeLatest(reviewsGetRequest, fetchReviews)
+  yield takeLatest(appDetailsMount, fetchReviews)
 }

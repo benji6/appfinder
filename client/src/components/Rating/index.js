@@ -32,12 +32,12 @@ class Rating extends React.PureComponent {
         <div className="rating__breakdown">
           {Object.entries(ratingsBreakdown)
             .reverse()
-            .map(([stars, amount]) => (
+            .map(([stars, amount], n) => (
               <Fragment key={stars}>
                 <div className="rating__breakdown-stars">
                   {stars}&nbsp;<Icon name="star" />
                 </div>
-                <RatingBar amount={amount} />
+                <RatingBar amount={amount} n={n} />
                 <span>{Math.round(amount * 100)}%</span>
               </Fragment>
             ))}

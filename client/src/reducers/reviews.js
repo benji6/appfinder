@@ -1,5 +1,8 @@
 import {handleActions} from 'redux-actions'
-import {reviewsGetSuccess} from '../actions'
+import {
+  appDetailsMount,
+  reviewsGetSuccess,
+} from '../actions'
 
 const initialState = {
   allIds: [],
@@ -26,6 +29,7 @@ export const reviewsSelector = ({reviews: {allIds, byId}}) => allIds.map(id => b
 export const totalRatingsSelector = state => state.reviews.allIds.length
 
 export default handleActions({
+  [appDetailsMount]: () => initialState,
   [reviewsGetSuccess]: (state, {payload}) => {
     const allIds = []
     const byId = {}
