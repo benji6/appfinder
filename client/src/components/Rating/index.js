@@ -27,7 +27,7 @@ class Rating extends React.PureComponent {
           <h3 className="rating__heading">
             {rating.toFixed(1)}&nbsp;<Icon name="star" size={headingFontSize} />
           </h3>
-          <h4 className="rating__subheading">({totalRatings} ratings)</h4>
+          <h4 className="rating__subheading">({totalRatings} rating{totalRatings > 1 ? 's' : ''})</h4>
         </div>
         <div className="rating__breakdown">
           {Object.entries(ratingsBreakdown)
