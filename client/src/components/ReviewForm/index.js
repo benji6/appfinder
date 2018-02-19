@@ -6,56 +6,91 @@ import {
   userIsSignedInSelector,
   userNameSelector,
 } from '../../reducers/user'
-import {userSignOutRequest} from '../../actions'
 import Avatar from '../generic/Avatar'
 import SignInButton from '../generic/SignInButton'
+import Icon from '../generic/Icon'
 import './style.css'
 
 class ReviewForm extends React.PureComponent {
+  constructor() {
+    super()
+
+    this.state = {
+      rating: null,
+      review: '',
+    }
+
+    this.handleRatingChange = this.handleRatingChange.bind(this)
+    this.handleReviewChange = this.handleReviewChange.bind(this)
+  }
+
+  handleRatingChange(e) {
+    this.setState({rating: Number(e.target.value)})
+  }
+
+  handleReviewChange(e) {
+    this.setState({review: e.target.value})
+  }
+
   render() {
     const {
-      handleSignOut,
       isSignedIn,
       userImageUrl,
       userName,
     } = this.props
+    const {rating, review} = this.state
 
     const handleSubmit = e => {
       e.preventDefault()
     }
 
     return (
-      isSignedIn ? (
-        <Fragment>
-          <div className="review-form__header">
-            <Avatar url={userImageUrl} />
-            <div className="reviews_user-name">{userName}</div>
-          </div>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Rating:
-              <input min="1" max="5" type="number" />
-            </label>
-            <label>
-              Review:
-              <input type="text" />
-            </label>
-            <button>Submit</button>
-          </form>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <div>Not Signed In</div>
-          <SignInButton />
-        </Fragment>
-      )
+      <div className="review-form">
+        {isSignedIn ? (
+          <Fragment>
+            <div className="review-form__header">
+              <Avatar url={userImageUrl} />
+              <div>{userName}</div>
+            </div>
+            <form className="review-form__form" onSubmit={handleSubmit}>
+              <div className="review-form__rating-container">
+                {[1, 2, 3, 4, 5].map(n => (
+                  <label key={n}>
+                    <input
+                      checked={rating === n}
+                      name="rating"
+                      onChange={this.handleRatingChange}
+                      type="radio"
+                      value={n}
+                    />
+                    {n} <Icon name="star" />
+                  </label>
+                ))}
+              </div>
+              <label className="review-form__review-label">
+                Review
+                <textarea
+                  onInput={this.handleReviewChange}
+                  placeholder="Write your review here"
+                  type="text"
+                  value={review}
+                />
+              </label>
+              <button className="review-form__submit">Submit</button>
+            </form>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <div>Not Signed In</div>
+            <SignInButton />
+          </Fragment>
+        )}
+      </div>
     )
   }
 }
 
 ReviewForm.propTypes = {
-  handleSignOut: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
   userImageUrl: PropTypes.string,
   userName: PropTypes.string,
@@ -67,8 +102,4 @@ const mapStateToProps = state => ({
   userName: userNameSelector(state),
 })
 
-const mapDispatchToProps = {
-  handleSignOut: userSignOutRequest,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm)
+export default connect(mapStateToProps)(ReviewForm)

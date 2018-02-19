@@ -1,3 +1,35 @@
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.review-form__form {
+  display: flex;
+  flex-direction: column;
+}
+
 .review-form__header {
-  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.review-form__rating-container {
+  margin-bottom: .5rem;
+}
+
+.review-form__review-label {
+  display: flex;
+  margin-bottom: 1rem;
+  flex-direction: column;
+}
+
+.review-form__submit {
+  background-color: var(--color-highlight);
+  border: none;
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow-1);
+  color: var(--color-white);
+  font-weight: 700;
+  padding: .5rem;
 }
