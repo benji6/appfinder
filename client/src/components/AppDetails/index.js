@@ -55,7 +55,11 @@ class AppDetails extends React.PureComponent {
           <p className="app-details__description">{description || 'No description available.'}</p>
         </div>
         {rating == null ? (
-          <div>No reviews yet - you will be able to add one soon</div>
+          <Fragment>
+            <hr className="app-details__hr" />
+            <h3 className="app-details__no-reviews-heading">Be the first to review this app!</h3>
+            <ReviewForm appId={id} />
+          </Fragment>
         ) : (
           <Fragment>
             <hr className="app-details__hr" />

@@ -35,7 +35,6 @@ class AppDetails extends React.PureComponent {
             {review}
           </Review>
         ))}
-        <hr />
       </div>
     )
   }

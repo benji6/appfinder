@@ -5,6 +5,14 @@
   border-radius: .5rem;
 }
 
+.review:first-child {
+  margin-top: 0;
+}
+
+.review:last-child {
+  margin-bottom: 0;
+}
+
 .review__body {
   margin: 0;
 }
