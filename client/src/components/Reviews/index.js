@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
 import {reviewsGetRequest} from '../../actions'
-import {reviewsSelector} from '../../reducers/reviews'
+import {textReviewsSelector} from '../../reducers/reviews'
 import Review from './Review'
 import './style.css'
 
@@ -54,7 +54,7 @@ AppDetails.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  reviews: reviewsSelector(state),
+  reviews: textReviewsSelector(state),
 })
 
 const mapDispatchToProps = {

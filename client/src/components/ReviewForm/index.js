@@ -9,6 +9,7 @@ import {
 import Avatar from '../generic/Avatar'
 import SignInButton from '../generic/SignInButton'
 import Icon from '../generic/Icon'
+import {reviewFormSubmit} from '../../actions'
 import './style.css'
 
 class ReviewForm extends React.PureComponent {
@@ -22,6 +23,7 @@ class ReviewForm extends React.PureComponent {
 
     this.handleRatingChange = this.handleRatingChange.bind(this)
     this.handleReviewChange = this.handleReviewChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleRatingChange(e) {
@@ -32,6 +34,19 @@ class ReviewForm extends React.PureComponent {
     this.setState({review: e.target.value})
   }
 
+  handleSubmit(e) {
+    e.preventDefault()
+
+    const {appId} = this.props
+    const {rating, review} = this.state
+
+    this.props.handleFormSubmit({
+      appId,
+      rating,
+      review,
+    })
+  }
+
   render() {
     const {
       isSignedIn,
@@ -39,10 +54,6 @@ class ReviewForm extends React.PureComponent {
       userName,
     } = this.props
     const {rating, review} = this.state
-
-    const handleSubmit = e => {
-      e.preventDefault()
-    }
 
     return (
       <div className="review-form">
@@ -52,7 +63,7 @@ class ReviewForm extends React.PureComponent {
               <Avatar url={userImageUrl} />
               <div>{userName}</div>
             </div>
-            <form className="review-form__form" onSubmit={handleSubmit}>
+            <form className="review-form__form" onSubmit={this.handleSubmit}>
               <div className="review-form__rating-container">
                 {[1, 2, 3, 4, 5].map(n => (
                   <label key={n}>
@@ -91,6 +102,8 @@ class ReviewForm extends React.PureComponent {
 }
 
 ReviewForm.propTypes = {
+  appId: PropTypes.number.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
   userImageUrl: PropTypes.string,
   userName: PropTypes.string,
@@ -102,4 +115,8 @@ const mapStateToProps = state => ({
   userName: userNameSelector(state),
 })
 
-export default connect(mapStateToProps)(ReviewForm)
+const mapDispatchToProps = {
+  handleFormSubmit: reviewFormSubmit,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm)

@@ -61,7 +61,7 @@ class AppDetails extends React.PureComponent {
             <hr className="app-details__hr" />
             <Rating />
             <hr className="app-details__hr" />
-            <ReviewForm />
+            <ReviewForm appId={id} />
             <hr className="app-details__hr" />
             <Reviews id={id} />
           </Fragment>
