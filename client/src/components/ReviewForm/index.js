@@ -81,6 +81,7 @@ class ReviewForm extends React.PureComponent {
               <label className="review-form__review-label">
                 Review
                 <textarea
+                  className="review-form__review-input"
                   onInput={this.handleReviewChange}
                   placeholder="Write your review here"
                   type="text"
