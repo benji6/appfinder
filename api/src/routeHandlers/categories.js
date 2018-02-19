@@ -3,10 +3,8 @@ const runQuery = require('../database/runQuery')
 
 const query = 'SELECT * FROM categories'
 
-const getCategories = () => runQuery(query)
-
 exports.get = (req, res) => {
-  getCategories()
+  runQuery(query)
     .then(data => res.send(data))
     .catch(err => {
       pino.error(err)
