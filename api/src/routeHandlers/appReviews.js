@@ -21,6 +21,7 @@ INNER JOIN users ON users.id = reviews.user_id
 const selectAppReviewsQuery = `
 ${selectQueryShared}
 WHERE reviews.app_id = ?
+ORDER BY reviews.id
 `
 
 const selectReviewQuery = `
