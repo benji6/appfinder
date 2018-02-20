@@ -24,9 +24,15 @@ WHERE reviews.app_id = ?
 ORDER BY reviews.id
 `
 
-const selectReviewQuery = `
+const selectReviewByIdQuery = `
 ${selectQueryShared}
 WHERE reviews.id = ?
+`
+
+const selectReviewByAppAndUserIdQuery = `
+${selectQueryShared}
+WHERE reviews.app_id = ?
+AND reviews.user_id = ?
 `
 
 exports.get = (req, res) => {
@@ -39,11 +45,20 @@ exports.get = (req, res) => {
 }
 
 exports.post = async (req, res) => {
+  const appId = req.params.id
   const {rating, review, userId} = req.body
 
   try {
-    const {insertId} = await runQuery(insertQuery, [req.params.id, rating, review, userId])
-    const [reviewRecord] = await runQuery(selectReviewQuery, [insertId])
+    const existingRecords = await runQuery(selectReviewByAppAndUserIdQuery, [appId, userId])
+
+    if (existingRecords.length) {
+      res.sendStatus(400)
+      pino.error(new Error(`Attempted to post multiple reviews - appId: ${appId} & userId: ${userId}`))
+      return
+    }
+
+    const {insertId} = await runQuery(insertQuery, [appId, rating, review, userId])
+    const [reviewRecord] = await runQuery(selectReviewByIdQuery, [insertId])
     res.send(reviewRecord)
   } catch (e) {
     pino.error(e)
