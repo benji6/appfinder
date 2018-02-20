@@ -18,8 +18,10 @@ import {
   searchRequestSuccess,
 } from '../actions'
 import {getApps} from '../api'
-import {categoryCaseLastUpdatedSelector} from '../reducers/categoryCases'
-import {searchQuerySelector} from '../reducers/search'
+import {
+  categoryCaseLastUpdatedSelector,
+  searchQuerySelector,
+} from '../selectors'
 
 function* fetchApps({payload: query}) {
   const previousQuery = yield select(searchQuerySelector)

@@ -9,7 +9,7 @@ import {
   categoriesGetSuccess,
 } from '../actions'
 import {getCategories} from '../api'
-import {categoriesLastUpdatedSelector} from '../reducers/categories'
+import {categoriesLastUpdatedSelector} from '../selectors'
 
 function* fetchCategories() {
   const lastUpdated = yield select(categoriesLastUpdatedSelector)

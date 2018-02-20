@@ -5,7 +5,7 @@ import {
   userImageUrlSelector,
   userIsSignedInSelector,
   userNameSelector,
-} from '../../reducers/user'
+} from '../../selectors'
 import Avatar from '../generic/Avatar'
 import SignInButton from '../generic/SignInButton'
 import Icon from '../generic/Icon'

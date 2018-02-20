@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import {appRatingSelector} from '../../reducers/app'
 import {
+  appRatingSelector,
   ratingsBreakdownSelector,
   totalRatingsSelector,
-} from '../../reducers/reviews'
+} from '../../selectors'
 import Icon from '../generic/Icon'
 import {computedStyle} from '../../utils'
 import RatingBar from './RatingBar'

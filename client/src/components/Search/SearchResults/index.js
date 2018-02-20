@@ -8,7 +8,7 @@ import {
   searchResultsAppsSelector,
   searchIsLoadingSelector,
   searchQuerySelector,
-} from '../../../reducers/search'
+} from '../../../selectors'
 import Heading from '../../generic/Heading'
 import './style.css'
 

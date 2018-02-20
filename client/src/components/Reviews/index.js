@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
 import {reviewsGetRequest} from '../../actions'
-import {textReviewsSelector} from '../../reducers/reviews'
+import {textReviewsSelector} from '../../selectors'
 import Review from './Review'
 import './style.css'
 

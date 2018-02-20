@@ -7,8 +7,6 @@ const initialState = {
   lastUpdated: null,
 }
 
-export const categoriesLastUpdatedSelector = state => state.categories.lastUpdated
-
 export default handleActions({
   [categoriesGetSuccess]: (state, {payload: categories}) => {
     const allIds = categories.map(({id}) => id)

@@ -1,7 +1,7 @@
 import {call, select, takeLatest} from 'redux-saga/effects'
 import {reviewFormSubmit} from '../actions'
 import {postReview} from '../api'
-import {userIdSelector} from '../reducers/user'
+import {userIdSelector} from '../selectors'
 
 function* submitReviewForm({payload}) {
   const userId = yield select(userIdSelector)

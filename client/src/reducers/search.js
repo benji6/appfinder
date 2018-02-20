@@ -16,12 +16,6 @@ const initialState = {
   },
 }
 
-export const searchIsLoadingSelector = state => state.search.isLoading
-export const searchResultsAppsSelector = ({
-  search: {results: {allIds, byId}},
-}) => allIds.map(id => byId[id])
-export const searchQuerySelector = state => state.search.query
-
 export default handleActions({
   [searchQueryClear]: state => ({...state, query: initialState.query}),
   [searchQuerySet]: (state, {payload}) => ({

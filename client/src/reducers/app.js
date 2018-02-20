@@ -6,8 +6,6 @@ const initialState = {
   rating: null,
 }
 
-export const appRatingSelector = state => state.app.rating
-
 export default handleActions({
   [appGetSuccess]: (state, {payload}) => payload,
 }, initialState)
