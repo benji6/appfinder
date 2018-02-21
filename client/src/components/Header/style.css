@@ -15,19 +15,18 @@
 }
 
 .header__link {
-  --padding: 1rem;
   color: var(--color-gray);
   font-weight: 900;
   text-decoration: none;
 }
 
 .header__link:first-child {
-  padding: .5rem var(--padding);
+  padding: .5rem;
   padding-right: 0;
 }
 
 .header__link:last-child {
-  padding: .5rem var(--padding);
+  padding: .5rem;
   padding-left: 0;
 }
 
