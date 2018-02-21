@@ -23,16 +23,16 @@
 
 .app-details__hr {
   border: 1px solid var(--color-gray);
-  margin: 1.5rem;
+  margin: 1.5rem 1rem;
 }
 
 .app-details__info-container {
-  padding: 1rem 2rem 0;
+  padding: 1rem 1.5rem 0;
 }
 
 .app-details__no-reviews-heading {
   text-align: center;
-  margin: 0 0 1rem;
+  margin: 0 1.5rem 1rem;
 }
 
 .app-details__url {
