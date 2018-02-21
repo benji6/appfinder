@@ -1,6 +1,7 @@
 import {createAction} from 'redux-actions'
 
 export const appDetailsMount = createAction('APP_DETAILS_MOUNT')
+export const appGetRequest = createAction('APP_GET_REQUEST')
 export const appGetSuccess = createAction('APP_GET_SUCCESS')
 export const categoriesGetSuccess = createAction('CATEGORIES_GET_SUCCESS')
 export const categoryCaseGetSuccess = createAction('CATEGORY_CASE_GET_SUCCESS')

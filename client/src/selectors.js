@@ -5,6 +5,7 @@ const reviewsByIdSelector = state => state.reviews.byId
 
 export const appRatingSelector = state => state.app.rating
 export const categoriesLastUpdatedSelector = state => state.categories.lastUpdated
+export const reviewsIsLoadingSelector = state => state.reviews.isLoading
 export const searchIsLoadingSelector = state => state.search.isLoading
 export const searchQuerySelector = state => state.search.query
 export const totalRatingsSelector = state => state.reviews.allIds.length

@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import {connect} from 'react-redux'
-import {reviewsGetRequest} from '../../actions'
 import {textReviewsSelector} from '../../selectors'
 import Review from './Review'
 import './style.css'
 
 class AppDetails extends React.PureComponent {
-  componentDidMount() {
-    this.props.handleMount(this.props.id)
-  }
-
   render() {
-    const {reviews,
-    } = this.props
+    const {reviews} = this.props
 
-    return (
+    return Boolean(reviews.length) && (
       <div className="reviews">
         {reviews.map(({
           dateCreated,
@@ -41,7 +35,6 @@ class AppDetails extends React.PureComponent {
 }
 
 AppDetails.propTypes = {
-  handleMount: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
     dateCreated: PropTypes.string.isRequired,
@@ -56,8 +49,4 @@ const mapStateToProps = state => ({
   reviews: textReviewsSelector(state),
 })
 
-const mapDispatchToProps = {
-  handleMount: reviewsGetRequest,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppDetails)
+export default connect(mapStateToProps)(AppDetails)

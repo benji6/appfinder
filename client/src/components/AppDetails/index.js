@@ -7,6 +7,7 @@ import Rating from '../Rating'
 import ReviewForm from '../ReviewForm'
 import Reviews from '../Reviews'
 import AppCard from '../generic/AppCard'
+import {reviewsIsLoadingSelector} from '../../selectors'
 import './style.css'
 
 class AppDetails extends React.PureComponent {
@@ -24,6 +25,8 @@ class AppDetails extends React.PureComponent {
       isLoading,
       name,
       rating,
+      showRating,
+      showReviewForm,
       url,
     } = this.props
 
@@ -62,10 +65,10 @@ class AppDetails extends React.PureComponent {
           </Fragment>
         ) : (
           <Fragment>
-            <hr className="app-details__hr" />
-            <Rating />
-            <hr className="app-details__hr" />
-            <ReviewForm appId={id} />
+            {showRating && <hr className="app-details__hr" />}
+            {showRating && <Rating />}
+            {showReviewForm && <hr className="app-details__hr" />}
+            {showReviewForm && <ReviewForm appId={id} />}
             <hr className="app-details__hr" />
             <Reviews id={id} />
           </Fragment>
@@ -84,6 +87,8 @@ AppDetails.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   name: PropTypes.string,
   rating: PropTypes.number,
+  showRating: PropTypes.bool.isRequired,
+  showReviewForm: PropTypes.bool.isRequired,
   url: PropTypes.string,
   urlId: PropTypes.number.isRequired,
 }
@@ -91,10 +96,13 @@ AppDetails.propTypes = {
 const mapStateToProps = (state, {match: {params: {id}}}) => {
   const urlId = Number(id)
   const {app} = state
+  const reviewsNotLoading = !reviewsIsLoadingSelector(state)
 
   return {
     ...app,
     isLoading: !app.id || app.id !== urlId,
+    showRating: reviewsNotLoading,
+    showReviewForm: reviewsNotLoading,
     urlId,
   }
 }

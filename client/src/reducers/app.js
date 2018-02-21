@@ -1,11 +1,13 @@
 import {handleActions} from 'redux-actions'
-import {appGetSuccess} from '../actions'
+import {appGetRequest, appGetSuccess} from '../actions'
 
 const initialState = {
   categoryIds: [],
+  isLoading: false,
   rating: null,
 }
 
 export default handleActions({
-  [appGetSuccess]: (state, {payload}) => payload,
+  [appGetRequest]: state => ({...state, isLoading: true}),
+  [appGetSuccess]: (state, {payload}) => ({...state, ...payload, isLoading: false}),
 }, initialState)
