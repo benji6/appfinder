@@ -1,5 +1,52 @@
 const pino = require('../pino')
-const {handleSignIn} = require('../database/users')
+const runQuery = require('../runQuery')
+
+const selectUserQuery = `
+SELECT
+  id,
+  email,
+  family_name AS familyName,
+  given_name AS givenName,
+  google_id AS googleId,
+  image_url AS imageUrl,
+  name
+FROM users
+WHERE google_id = ?
+`
+
+const selectUser = googleId => runQuery(selectUserQuery, [googleId])
+  .then(results => results[0])
+
+const checkUserExists = googleId => runQuery(
+  'SELECT * FROM users WHERE google_id = ?',
+  [googleId],
+)
+  .then(results => Boolean(results.length))
+
+const handleSignIn = async ({
+  email,
+  familyName,
+  givenName,
+  googleId,
+  imageUrl,
+  name,
+}) => {
+  if (await checkUserExists(googleId)) {
+    // TODO: update a user if there are any changes
+    return selectUser(googleId)
+  }
+
+  await runQuery('INSERT INTO users SET ?', {
+    email,
+    family_name: familyName,
+    given_name: givenName,
+    google_id: googleId,
+    image_url: imageUrl,
+    name,
+  })
+
+  return selectUser(googleId)
+}
 
 const {GOOGLE_CLIENT_ID} = process.env
 
