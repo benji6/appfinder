@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const runQuery = require('./runQuery')
+const runQuery = require('../runQuery')
 
 const selectAllQuery = `
 SELECT

@@ -1,5 +1,5 @@
 const pino = require('../pino')
-const runQuery = require('../database/runQuery')
+const runQuery = require('../runQuery')
 
 const query = 'SELECT * FROM categories'
 

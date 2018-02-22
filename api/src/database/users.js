@@ -1,4 +1,4 @@
-const runQuery = require('./runQuery')
+const runQuery = require('../runQuery')
 
 const selectUserQuery = `
 SELECT
