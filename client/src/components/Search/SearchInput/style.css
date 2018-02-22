@@ -56,7 +56,7 @@
   border: 2px solid var(--color-theme);
   border-left: none;
   border-right: none;
-  padding: .5rem;
+  padding: .5rem 0;
   font-size: 1.1rem;
   outline: 0;
   transition-duration: .1s;
@@ -84,11 +84,12 @@
   order: -1;
   font-size: .8rem;
   font-weight: 700;
-  padding-left: .5rem;
+  padding: 0 .5rem;
   transition-duration: .1s;
   transition-property: border-color, color;
   transition-timing-function: ease-in-out;
 }
+
 .search__input:focus ~ .search__label {
   border-color: var(--color-highlight);
   color: var(--color-highlight)

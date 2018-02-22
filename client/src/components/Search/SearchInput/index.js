@@ -19,8 +19,9 @@ class Search extends React.PureComponent {
 
   componentDidMount() {
     const {input} = this
-    input.onfocus = () => this.setState({isFocussed: true})
     input.onblur = () => this.setState({isFocussed: false})
+    input.onfocus = () => this.setState({isFocussed: true})
+    input.focus()
   }
 
   handleClear() {
@@ -47,7 +48,6 @@ class Search extends React.PureComponent {
             id="search"
             maxLength={SEARCH_QUERY_MAX_LENGTH}
             onChange={e => handleChange(e.target.value)}
-            placeholder="Enter search here"
             ref={ref => { this.input = ref }}
             value={query}
           />
