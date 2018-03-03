@@ -1,5 +1,5 @@
-import {call, select, takeLatest} from 'redux-saga/effects'
-import {reviewFormSubmit} from '../actions'
+import {call, put, select, takeLatest} from 'redux-saga/effects'
+import {reviewFormSubmit, reviewsUpdateRequest} from '../actions'
 import {postReview, putReview} from '../api'
 import {
   userIdSelector,
@@ -16,7 +16,7 @@ function* submitReviewForm({payload: {appId, rating, review, reviewId}}) {
     } else {
       yield call(postReview, {appId, rating, review, userId})
     }
-    // TODO - refresh data
+    yield put(reviewsUpdateRequest(appId))
   } catch (e) {
     console.error(e)
   }

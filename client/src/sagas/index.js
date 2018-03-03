@@ -3,6 +3,7 @@ import app from './app'
 import apps from './apps'
 import categories from './categories'
 import reviewForm from './reviewForm'
+import reviews from './reviews'
 import user from './user'
 
 export default function* rootSaga() {
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     apps,
     categories,
     reviewForm,
+    reviews,
     user,
   ].map(fork))
 }

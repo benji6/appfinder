@@ -27,6 +27,15 @@ class ReviewForm extends React.PureComponent {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.rating !== nextProps.rating || this.props.review !== nextProps.review) {
+      this.setState({
+        rating: nextProps.rating || null,
+        review: nextProps.review || '',
+      })
+    }
+  }
+
   handleRatingChange(e) {
     this.setState({rating: Number(e.target.value)})
   }
