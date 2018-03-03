@@ -7,7 +7,11 @@ import Rating from '../Rating'
 import ReviewForm from '../ReviewForm'
 import Reviews from '../Reviews'
 import AppCard from '../generic/AppCard'
-import {reviewsIsLoadingSelector} from '../../selectors'
+import SignIn from './SignIn'
+import {
+  reviewsIsLoadingSelector,
+  userIsSignedInSelector,
+} from '../../selectors'
 import './style.css'
 
 class AppDetails extends React.PureComponent {
@@ -23,10 +27,11 @@ class AppDetails extends React.PureComponent {
       iconUrl,
       id,
       isLoading,
+      isSignedIn,
       name,
       rating,
+      reviewsLoaded,
       showRating,
-      showReviewForm,
       url,
     } = this.props
 
@@ -58,17 +63,39 @@ class AppDetails extends React.PureComponent {
           <p className="app-details__description">{description || 'No description available.'}</p>
         </div>
         {rating == null ? (
-          <Fragment>
-            <hr className="app-details__hr" />
-            <h3 className="app-details__no-reviews-heading">Be the first to review this app!</h3>
-            <ReviewForm appId={id} />
-          </Fragment>
+          isSignedIn ? (
+            reviewsLoaded && (
+              <Fragment>
+                <hr className="app-details__hr" />
+                <h3 className="app-details__no-reviews-heading">
+                  Be the first to review this app!
+                </h3>
+                <ReviewForm appId={id} />
+              </Fragment>
+            )
+          ) : (
+            <Fragment>
+              <hr className="app-details__hr" />
+              <SignIn />
+            </Fragment>
+          )
         ) : (
           <Fragment>
             {showRating && <hr className="app-details__hr" />}
             {showRating && <Rating />}
-            {showReviewForm && <hr className="app-details__hr" />}
-            {showReviewForm && <ReviewForm appId={id} />}
+            {isSignedIn ? (
+              reviewsLoaded && (
+                <Fragment>
+                  <hr className="app-details__hr" />
+                  <ReviewForm appId={id} />
+                </Fragment>
+              )
+            ) : (
+              <Fragment>
+                <hr className="app-details__hr" />
+                <SignIn />
+              </Fragment>
+            )}
             <hr className="app-details__hr" />
             <Reviews id={id} />
           </Fragment>
@@ -85,10 +112,11 @@ AppDetails.propTypes = {
   iconUrl: PropTypes.string,
   id: PropTypes.number,
   isLoading: PropTypes.bool.isRequired,
+  isSignedIn: PropTypes.bool.isRequired,
   name: PropTypes.string,
   rating: PropTypes.number,
+  reviewsLoaded: PropTypes.bool.isRequired,
   showRating: PropTypes.bool.isRequired,
-  showReviewForm: PropTypes.bool.isRequired,
   url: PropTypes.string,
   urlId: PropTypes.number.isRequired,
 }
@@ -96,13 +124,14 @@ AppDetails.propTypes = {
 const mapStateToProps = (state, {match: {params: {id}}}) => {
   const urlId = Number(id)
   const {app} = state
-  const reviewsNotLoading = !reviewsIsLoadingSelector(state)
+  const reviewsLoaded = !reviewsIsLoadingSelector(state)
 
   return {
     ...app,
     isLoading: !app.id || app.id !== urlId,
-    showRating: reviewsNotLoading,
-    showReviewForm: reviewsNotLoading,
+    isSignedIn: userIsSignedInSelector(state),
+    reviewsLoaded,
+    showRating: reviewsLoaded,
     urlId,
   }
 }

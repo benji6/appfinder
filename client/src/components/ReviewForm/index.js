@@ -3,22 +3,22 @@ import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import {
   userImageUrlSelector,
-  userIsSignedInSelector,
   userNameSelector,
+  userRatingSelector,
+  userReviewSelector,
 } from '../../selectors'
 import Avatar from '../generic/Avatar'
-import SignInButton from '../generic/SignInButton'
 import Icon from '../generic/Icon'
 import {reviewFormSubmit} from '../../actions'
 import './style.css'
 
 class ReviewForm extends React.PureComponent {
-  constructor() {
+  constructor(props) {
     super()
 
     this.state = {
-      rating: null,
-      review: '',
+      rating: props.rating || null,
+      review: props.review || '',
     }
 
     this.handleRatingChange = this.handleRatingChange.bind(this)
@@ -49,7 +49,6 @@ class ReviewForm extends React.PureComponent {
 
   render() {
     const {
-      isSignedIn,
       userImageUrl,
       userName,
     } = this.props
@@ -57,46 +56,39 @@ class ReviewForm extends React.PureComponent {
 
     return (
       <div className="review-form">
-        {isSignedIn ? (
-          <Fragment>
-            <div className="review-form__header">
-              <Avatar url={userImageUrl} />
-              <div>{userName}</div>
-            </div>
-            <form className="review-form__form" onSubmit={this.handleSubmit}>
-              <div className="review-form__rating-container">
-                {[1, 2, 3, 4, 5].map(n => (
-                  <label key={n}>
-                    <input
-                      checked={rating === n}
-                      name="rating"
-                      onChange={this.handleRatingChange}
-                      type="radio"
-                      value={n}
-                    />
-                    {n} <Icon name="star" />
-                  </label>
+        <Fragment>
+          <div className="review-form__header">
+            <Avatar url={userImageUrl} />
+            <div>{userName}</div>
+          </div>
+          <form className="review-form__form" onSubmit={this.handleSubmit}>
+            <div className="review-form__rating-container">
+              {[1, 2, 3, 4, 5].map(n => (
+                <label key={n}>
+                  <input
+                    checked={rating === n}
+                    name="rating"
+                    onChange={this.handleRatingChange}
+                    type="radio"
+                    value={n}
+                  />
+                  {n} <Icon name="star" />
+                </label>
                 ))}
-              </div>
-              <label className="review-form__review-label">
-                Review
-                <textarea
-                  className="review-form__review-input"
-                  onInput={this.handleReviewChange}
-                  placeholder="Write your review here"
-                  type="text"
-                  value={review}
-                />
-              </label>
-              <button className="review-form__submit">Submit</button>
-            </form>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <div>Not Signed In</div>
-            <SignInButton />
-          </Fragment>
-        )}
+            </div>
+            <label className="review-form__review-label">
+              Review
+              <textarea
+                className="review-form__review-input"
+                onChange={this.handleReviewChange}
+                placeholder="Write your review here"
+                type="text"
+                value={review}
+              />
+            </label>
+            <button className="review-form__submit">Submit</button>
+          </form>
+        </Fragment>
       </div>
     )
   }
@@ -105,13 +97,15 @@ class ReviewForm extends React.PureComponent {
 ReviewForm.propTypes = {
   appId: PropTypes.number.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
-  isSignedIn: PropTypes.bool.isRequired,
+  rating: PropTypes.number,
+  review: PropTypes.string,
   userImageUrl: PropTypes.string,
   userName: PropTypes.string,
 }
 
 const mapStateToProps = state => ({
-  isSignedIn: userIsSignedInSelector(state),
+  rating: userRatingSelector(state),
+  review: userReviewSelector(state),
   userImageUrl: userImageUrlSelector(state),
   userName: userNameSelector(state),
 })

@@ -3,6 +3,9 @@ import {createSelector} from 'reselect'
 const reviewsAllIdsSelector = state => state.reviews.allIds
 const reviewsByIdSelector = state => state.reviews.byId
 
+const userReviewRecordSelector = state => Object.values(state.reviews.byId)
+  .find(({userId}) => userId === state.user.id)
+
 export const appRatingSelector = state => state.app.rating
 export const categoriesLastUpdatedSelector = state => state.categories.lastUpdated
 export const reviewsIsLoadingSelector = state => state.reviews.isLoading
@@ -13,6 +16,10 @@ export const userIdSelector = state => state.user.id
 export const userImageUrlSelector = state => state.user.imageUrl
 export const userIsSignedInSelector = state => state.user.isSignedIn
 export const userNameSelector = state => state.user.name
+export const userRatingSelector = state => userReviewRecordSelector(state) &&
+  userReviewRecordSelector(state).rating
+export const userReviewSelector = state => userReviewRecordSelector(state) &&
+  userReviewRecordSelector(state).review
 
 export const categoryCaseAppsSelector = (state, {category}) => {
   const entity = state.categoryCases[category]
