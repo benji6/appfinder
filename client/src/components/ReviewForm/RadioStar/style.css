@@ -1,0 +1,22 @@
+.radio-star {
+  cursor: pointer;
+}
+
+.radio-star__appearance {
+  display: inline-flex;
+  align-items: center;
+}
+
+.radio-star__appearance--highlighted {
+  color: var(--color-highlight);
+}
+
+.radio-star__input:checked ~ .radio-star__appearance {
+  color: var(--color-highlight);
+}
+
+.radio-star__input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}

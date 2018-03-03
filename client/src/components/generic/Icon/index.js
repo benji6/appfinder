@@ -35,11 +35,17 @@ const nameToComponentMap = {
 
 class Icon extends React.PureComponent {
   render() {
-    const {name, size} = this.props
+    const {fill, name, size} = this.props
 
     return React.createElement(
       nameToComponentMap[name],
-      {style: {height: size, width: size}},
+      {
+        style: {
+          fill: fill ? 'currentColor' : 'none',
+          height: size,
+          width: size,
+        },
+      },
     )
   }
 }
@@ -49,6 +55,7 @@ Icon.defaultProps = {
 }
 
 Icon.propTypes = {
+  fill: PropTypes.bool,
   name: PropTypes.oneOf([
     'arrow-left',
     'arrow-right',

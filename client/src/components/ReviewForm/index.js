@@ -9,7 +9,7 @@ import {
   userReviewSelector,
 } from '../../selectors'
 import Avatar from '../generic/Avatar'
-import Icon from '../generic/Icon'
+import RadioStar from './RadioStar'
 import {reviewFormSubmit} from '../../actions'
 import './style.css'
 
@@ -74,18 +74,14 @@ class ReviewForm extends React.PureComponent {
           </div>
           <form className="review-form__form" onSubmit={this.handleSubmit}>
             <div className="review-form__rating-container">
-              {[1, 2, 3, 4, 5].map(n => (
-                <label key={n}>
-                  <input
-                    checked={rating === n}
-                    name="rating"
-                    onChange={this.handleRatingChange}
-                    type="radio"
-                    value={n}
-                  />
-                  {n} <Icon name="star" />
-                </label>
-                ))}
+              {[1, 2, 3, 4, 5].map(value => (
+                <RadioStar
+                  key={value}
+                  onChange={this.handleRatingChange}
+                  rating={rating}
+                  value={value}
+                />
+              ))}
             </div>
             <label className="review-form__review-label">
               Review
