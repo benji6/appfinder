@@ -44,3 +44,12 @@ export const postReview = ({appId, rating, review, userId}) => fetch(`${API_URI}
   method: 'POST',
 })
   .then(handleJsonResponse)
+
+export const putReview = ({rating, review, reviewId}) => fetch(`${API_URI}/app/123/reviews`, {
+  body: JSON.stringify({rating, review, reviewId}),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  method: 'PUT',
+})
+  .then(handleJsonResponse)

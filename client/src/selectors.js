@@ -3,9 +3,6 @@ import {createSelector} from 'reselect'
 const reviewsAllIdsSelector = state => state.reviews.allIds
 const reviewsByIdSelector = state => state.reviews.byId
 
-const userReviewRecordSelector = state => Object.values(state.reviews.byId)
-  .find(({userId}) => userId === state.user.id)
-
 export const appRatingSelector = state => state.app.rating
 export const categoriesLastUpdatedSelector = state => state.categories.lastUpdated
 export const reviewsIsLoadingSelector = state => state.reviews.isLoading
@@ -13,11 +10,22 @@ export const searchIsLoadingSelector = state => state.search.isLoading
 export const searchQuerySelector = state => state.search.query
 export const totalRatingsSelector = state => state.reviews.allIds.length
 export const userIdSelector = state => state.user.id
+
+const userReviewRecordSelector = createSelector(
+  reviewsByIdSelector,
+  userIdSelector,
+  (reviewsById, userId) => Object.values(reviewsById)
+    .find(review => review.userId === userId),
+)
+
 export const userImageUrlSelector = state => state.user.imageUrl
 export const userIsSignedInSelector = state => state.user.isSignedIn
 export const userNameSelector = state => state.user.name
+export const userReviewRecordExistsSelector = state => Boolean(userReviewRecordSelector(state))
 export const userRatingSelector = state => userReviewRecordSelector(state) &&
   userReviewRecordSelector(state).rating
+export const userReviewIdSelector = state => userReviewRecordSelector(state) &&
+  userReviewRecordSelector(state).id
 export const userReviewSelector = state => userReviewRecordSelector(state) &&
   userReviewRecordSelector(state).review
 

@@ -1,14 +1,22 @@
 import {call, select, takeLatest} from 'redux-saga/effects'
 import {reviewFormSubmit} from '../actions'
-import {postReview} from '../api'
-import {userIdSelector} from '../selectors'
+import {postReview, putReview} from '../api'
+import {
+  userIdSelector,
+  userReviewRecordExistsSelector,
+} from '../selectors'
 
-function* submitReviewForm({payload}) {
+function* submitReviewForm({payload: {appId, rating, review, reviewId}}) {
   const userId = yield select(userIdSelector)
+  const isPut = yield select(userReviewRecordExistsSelector)
 
   try {
-    yield call(postReview, {...payload, userId})
-    // yield put(appGetSuccess(app))
+    if (isPut) {
+      yield call(putReview, {rating, review, reviewId})
+    } else {
+      yield call(postReview, {appId, rating, review, userId})
+    }
+    // TODO - refresh data
   } catch (e) {
     console.error(e)
   }

@@ -5,6 +5,7 @@ import {
   userImageUrlSelector,
   userNameSelector,
   userRatingSelector,
+  userReviewIdSelector,
   userReviewSelector,
 } from '../../selectors'
 import Avatar from '../generic/Avatar'
@@ -37,13 +38,14 @@ class ReviewForm extends React.PureComponent {
   handleSubmit(e) {
     e.preventDefault()
 
-    const {appId} = this.props
+    const {appId, reviewId} = this.props
     const {rating, review} = this.state
 
     this.props.handleFormSubmit({
       appId,
       rating,
       review,
+      reviewId,
     })
   }
 
@@ -106,6 +108,7 @@ ReviewForm.propTypes = {
 const mapStateToProps = state => ({
   rating: userRatingSelector(state),
   review: userReviewSelector(state),
+  reviewId: userReviewIdSelector(state),
   userImageUrl: userImageUrlSelector(state),
   userName: userNameSelector(state),
 })
