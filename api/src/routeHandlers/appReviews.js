@@ -47,7 +47,7 @@ AND reviews.user_id = ?
 `
 
 exports.get = (req, res) => {
-  runQuery(selectAppReviewsQuery, [req.params.id])
+  runQuery(selectAppReviewsQuery, [req.query.appId])
     .then(data => res.send(data))
     .catch(err => {
       pino.error(err)
@@ -56,8 +56,7 @@ exports.get = (req, res) => {
 }
 
 exports.post = async (req, res) => {
-  const appId = req.params.id
-  const {rating, review, userId} = req.body
+  const {appId, rating, review, userId} = req.body
 
   try {
     const existingRecords = await runQuery(selectReviewByAppAndUserIdQuery, [appId, userId])
@@ -78,7 +77,8 @@ exports.post = async (req, res) => {
 }
 
 exports.put = async (req, res) => {
-  const {rating, review, reviewId} = req.body
+  const reviewId = req.params.id
+  const {rating, review} = req.body
 
   try {
     var recordCount = await runQuery(updateQuery, [rating, review, reviewId])

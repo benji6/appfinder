@@ -27,7 +27,7 @@ export const getApps = ({query, category}) => {
 export const getCategories = () => fetch(`${API_URI}/categories`)
   .then(handleJsonResponse)
 
-export const getReviews = appId => fetch(`${API_URI}/app/${appId}/reviews`)
+export const getReviews = appId => fetch(`${API_URI}/reviews?appId=${appId}`)
   .then(handleJsonResponse)
 
 export const postGoogleSignIn = body => fetch(`${API_URI}/google-sign-in`, {
@@ -36,8 +36,8 @@ export const postGoogleSignIn = body => fetch(`${API_URI}/google-sign-in`, {
 })
   .then(handleJsonResponse)
 
-export const postReview = ({appId, rating, review, userId}) => fetch(`${API_URI}/app/${appId}/reviews`, {
-  body: JSON.stringify({rating, review, userId}),
+export const postReview = ({appId, rating, review, userId}) => fetch(`${API_URI}/reviews`, {
+  body: JSON.stringify({appId, rating, review, userId}),
   headers: {
     'Content-Type': 'application/json',
   },
@@ -45,8 +45,8 @@ export const postReview = ({appId, rating, review, userId}) => fetch(`${API_URI}
 })
   .then(handleJsonResponse)
 
-export const putReview = ({rating, review, reviewId}) => fetch(`${API_URI}/app/123/reviews`, {
-  body: JSON.stringify({rating, review, reviewId}),
+export const putReview = ({rating, review, reviewId}) => fetch(`${API_URI}/reviews/${reviewId}`, {
+  body: JSON.stringify({rating, review}),
   headers: {
     'Content-Type': 'application/json',
   },

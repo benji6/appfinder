@@ -101,6 +101,7 @@ ReviewForm.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   rating: PropTypes.number,
   review: PropTypes.string,
+  reviewId: PropTypes.number,
   userImageUrl: PropTypes.string,
   userName: PropTypes.string,
 }
