@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {
   Redirect,
   BrowserRouter as Router,
@@ -9,12 +9,13 @@ import Header from '../Header'
 import AppDetails from '../AppDetails'
 import Browse from '../Browse'
 import Search from '../Search'
+import ScrollToTop from '../ScrollToTop'
 
 class App extends React.PureComponent {
   render() {
     return (
       <Router>
-        <Fragment>
+        <ScrollToTop>
           <Header />
           <Switch>
             <Route path="/" component={Browse} exact />
@@ -22,7 +23,7 @@ class App extends React.PureComponent {
             <Route path="/search" component={Search} exact />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
-        </Fragment>
+        </ScrollToTop>
       </Router>
     )
   }
